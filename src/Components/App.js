@@ -12,6 +12,7 @@ import {BrowserRouter as Router, Routes,Route,Link,Outlet} from 'react-router-do
 import Nav from "./Nav/Nav.jsx"
 import ProfilePage from './Profile/Profile';
 import SenatorsPage from './Senators/Senators';
+import SenatorByState from './Senators/SenatorByState';
 
 function App() {
 const [tokenInfo, setTokenInfo] = useState({})
@@ -20,17 +21,27 @@ const [userInfo, setUserInfo] = useState({})
 const [senatorList, setSenatorList] = useState([])
 const [senatorVoteList, setSenatorVoteList] = useState([])
 const [senatorByState, setSenatorByState] = useState([])
+const [senatorByStateInput, setSenatorByStateInput] = useState([])
 const [senatorInfo, setSenatorInfo] = useState([])
 const [specficSenator, setSpecificSenator] = useState([])
+const [senatorLoad, setSenatorLoad] = useState(false)
+
+
+
+useEffect(()=>{
+getCurrentSenators()
+},[])
+
+
 
 //Get user login
 
-const loginUser = async (loginUser) => {
-let response= await axios.post('http://127.0.0.1:8000/api/auth/login/', loginUser);
-localStorage.setItem('token', response.data.access);
-//console.log("response axios call", response.data)
-getUserJWT();
-}
+  async function loginUser(loginUser) {
+    let response = await axios.post('http://127.0.0.1:8000/api/auth/login/', loginUser);
+    localStorage.setItem('token', response.data.access);
+    //console.log("response axios call", response.data)
+    getUserJWT();
+  }
 
 const getUserJWT = () => {
   const jwt = localStorage.getItem('token');
@@ -51,13 +62,13 @@ const getUserJWT = () => {
 }
 const getUserProfile = async () => {
   const jwt = localStorage.getItem('token');
-  //console.log("This is the UserID " + tokenInfo.user_id)
-  console.log("This is the all token info " + tokenInfo)
-  let response = await axios.get(`http://127.0.0.1:8000/profile/3/`, { headers: {Authorization: 'Bearer ' + jwt}})
+  // console.log("This is the UserID " , tokenInfo.user_id)
+  // console.log("This is the all token info " , tokenInfo)
+  let response = await axios.get(`http://127.0.0.1:8000/profile/${tokenInfo.user_id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
  // let response = await axios.get(`http://127.0.0.1:8000/profile/${tokenInfo.user_id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
-  console.log("This is the profile from API " + response.data)
+  console.log("This is the profile from API " , response.data)
   setUserInfo(response.data) 
-  getCurrentSenators() 
+  // senatorLoad(true)
 }
 
 const logOut = ()=>{
@@ -97,15 +108,25 @@ const getCurrentSenators= async () => {
   console.log("These are the Senators from API ", response.data.results[0].members)
   setSenatorList(response.data.results[0].members)
   console.log("This is the state variable senatorList "+ {senatorList})
-  filterSenators()
+  filterSenatorsOnProfile()
+  
   
 }
 
-const filterSenators=()=>{
- 
-    const senator = senatorList.filter(state => state.state === userInfo.state)
-    console.log(senator)
+const filterSenatorsOnProfile=()=>{
+  console.log("userInfo", userInfo)
+    const senator = senatorList.filter(sl => sl.state === userInfo.state)
+    console.log("filterSenatorsOnProfile", senator)
     setSenatorByState(senator)
+}
+
+const filterSenators=(objectpassed)=>{
+ setSenatorLoad(!senatorLoad)
+ console.log("object passed", objectpassed)
+ console.log(senatorList)
+  const senator = senatorList.filter(state => state.state === objectpassed.state)
+  console.log("this is the array senator", senator)
+  setSenatorByStateInput(senator)
 }
 
 const getSenatorVotingRecord= async () => {
@@ -146,13 +167,14 @@ const getCommittee= async (objectpassed) => {
     
       <div className="background">
         <Router>
-          <Nav logoutUser={logOut}/>
+          <Nav logoutUser={logOut} />
           <Routes>
-            <Route path="/Profile" element={<ProfilePage user={userInfo} senators={senatorByState}/>}/>
+            <Route path="/Profile" element={<ProfilePage user={userInfo} senators={senatorByState} />}/>
             <Route path="/Login" element={<LoginScreen loginUserCall={loginUser} registerUser={registerUser} />} />        
             <Route path="/UserRegistration" element={<RegistrationScreen registerUser={registerUser} />} />
+            <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} />
             {/* <Route path="/" element={<HomePage />} /> */}
-            <Route path="/Senators" element={<SenatorsPage senator={specficSenator} senatorInfo={senatorInfo} getCommittee={getCommittee}/>} 
+            <Route path="/Senators" element={<SenatorsPage senator={specficSenator} senatorInfo={senatorInfo}  getCommittee={getCommittee}/>} 
               // <Route path="/Senators" element={<SenatorsPage senators={senatorList} senatorInfo={senatorInfo}/>}
             />
           </Routes>

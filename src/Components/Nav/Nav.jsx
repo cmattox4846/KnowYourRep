@@ -50,6 +50,8 @@ class Nav extends Component{
                 <Link to="/Profile">Profile</Link>
                 <Link to="/UserRegistration">Registration</Link>
                 <Link to="/Senators" >Senators</Link>
+                <Link to="/SenatorsByState" >SenatorsByState</Link>
+                
                 
                 
                 {/* <Link to="/ShoppingCart">Shopping Cart</Link>
