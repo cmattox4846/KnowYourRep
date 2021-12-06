@@ -15,10 +15,13 @@ import {
 const VotingPosition = (props) => {
   const { formValues, handleChange, handleSubmit } = useForm(VotingSearch);
 
-  // let navigate= useNavigate();
+  let navigate= useNavigate();
 
   async function VotingSearch() {
     props.getVotingPosition(formValues);
+  }
+  async function runGraphs() {
+    navigate('/BarChart')
   }
 
 
@@ -41,6 +44,10 @@ const VotingPosition = (props) => {
           Search Senator
         </Button>
       </Form>
+      <div>
+        
+        <button onClick={runGraphs}>See Graph of Results</button>
+      </div>
       <Table>
         <thead>
           <tr>
@@ -60,8 +67,8 @@ const VotingPosition = (props) => {
           <tr></tr>
           {props.senatorsVotes.map((senator) => {
             return (
-              <tr key={senator.member_id}>
-                {/* <td>{senator.member_id}</td> */}
+              <tr>
+                <td>{senator.member_id}</td>
                 <td>{senator.congress}</td>
                 <td>{senator.bill.number}</td>
                 <td>{senator.description}</td>
@@ -76,6 +83,7 @@ const VotingPosition = (props) => {
           })}
         </tbody>
       </Table>
+      
     </div>
   );
 };

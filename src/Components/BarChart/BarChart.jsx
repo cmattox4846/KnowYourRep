@@ -16,6 +16,9 @@ const BarChart = (props) => {
           
           return (
              <div> <div><Link to="/Bills"  > {senator.bill.number} ({senator.description})</Link></div>
+             <div>
+             Members Voting Position: {senator.position}
+             </div>
             <Bar
              height={5}
              width={10}

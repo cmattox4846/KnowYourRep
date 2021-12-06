@@ -66,9 +66,9 @@ const BillsSearch = (props) => {
           <tr>
             {" "}
             <td>
-              Total Yes votes - {props.billInfo.votes.total_yes}
-              Total No Votes - {props.billInfo.votes.total_no}
-              Result - {props.billInfo.votes.result}
+              {/* Total Yes Votes - {props.billInfo.votes[0].total_yes} |
+              Total No Votes - {props.billInfo.votes[0].total_no} |
+              Resulting Action - {props.billInfo.votes[0].result} */}
             </td>
           </tr>
 

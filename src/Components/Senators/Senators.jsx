@@ -65,7 +65,7 @@ const SenatorScreen = (props) => {
         <outlet />
      </div>
      <div>
-     {/* <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} /> */}
+    
 
      </div>
     </div>
