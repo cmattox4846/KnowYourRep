@@ -16,6 +16,7 @@ import SenatorByState from './Senators/SenatorByState';
 import VotingPosition from './Senators/VotingPosition';
 import BarChart from './BarChart/BarChart';
 import BillsSearch from './Bills/Bills';
+import SenatorScreen from './Senators/Senators';
 
 function App() {
 const [tokenInfo, setTokenInfo] = useState({})
@@ -69,9 +70,10 @@ const getUserJWT = () => {
 }
 const getUserProfile = async () => {
   const jwt = localStorage.getItem('token');
+  const id = tokenInfo.user_id
   console.log("This is the UserID " , tokenInfo.user_id)
   // console.log("This is the all token info " , tokenInfo)
-  let response = await axios.get(`http://127.0.0.1:8000/profile/${tokenInfo.user_id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
+  let response = await axios.get(`http://127.0.0.1:8000/profile/${id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
  // let response = await axios.get(`http://127.0.0.1:8000/profile/${tokenInfo.user_id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
   console.log("This is the profile from API " , response.data)
   setUserInfo(response.data) 
@@ -148,11 +150,14 @@ const getAllBills= async () => {
   console.log("These are the Senators votesfrom API " , response.results.votes)
   setSenatorVoteList(response.results.votes)  
 }
+
+
 const getSpecificBill= async (objectpassed) => {
- 
-  let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
-  console.log("These are the Senators votesfrom API " + response.results.votes)
-  setSenatorVoteList(response.results.votes)  
+  const id = objectpassed.bill_id
+  console.log("Bill Id ", objectpassed.bill_id)
+  let response = await axios.get(`https://api.propublica.org/congress/v1/117/bills/${id}.json`, { headers: {"X-API-Key": propublicakey}})
+  console.log("Specific Bill " , response.data.results[0])
+  setbillInfo(response.data.results[0])  
 }
 
 // const getSpecificSenator= async (obj) => {
@@ -181,13 +186,13 @@ const getCommittee= async (objectpassed) => {
             <Route path="/UserRegistration" element={<RegistrationScreen registerUser={registerUser} />} />
             <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} />
             {/* <Route path="/" element={<HomePage />} /> */}
-            <Route path="Senators" element={<SenatorsPage senator={senatorByState} senatorInfo={senatorInfo}  getCommittee={getCommittee}/>}> 
+            <Route path="/Senators" element={<SenatorScreen senator={senatorByState} specificSenator={specficSenator}senatorInfo={senatorInfo}  getCommittee={getCommittee}/>}> 
 
               {/* <Route path="/" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} /> */}
             </Route>
             <Route path="VotingPosition" element={<VotingPosition senator={senatorByState} senatorInfo={senatorInfo} senatorsVotes={senatorVoteList}  getVotingPosition={getSenatorVotingRecord}/>}/> 
-            <Route path="/BarChart" element={<BarChart senatorsVotes={senatorVoteList} />} />
-            <Route path="/Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} />} />
+            <Route path="BarChart" element={<BarChart senatorsVotes={senatorVoteList} getBills={getSpecificBill}/>} />
+            <Route path="Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} />} />
           </Routes>
           
        

@@ -44,7 +44,8 @@ const SenatorScreen = (props) => {
         <thead>
           <tr>
             <td>
-              {props.senator.first_name} {props.senator.last_name} Is A Member
+                {console.log(props.specificSenator)}
+              {props.specificSenator.first_name} {props.specificSenator.last_name} Is A Member
               Of These Committees
             </td>
           </tr>

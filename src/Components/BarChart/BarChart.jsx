@@ -2,6 +2,7 @@ import React from "react";
 import { Bar, Bubble, Line, Pie, Radar, Scatter } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Chart } from "react-chartjs-2";
+import { Link } from 'react-router-dom'
 
 const BarChart = (props) => {
   return (
@@ -11,9 +12,10 @@ const BarChart = (props) => {
         {props.senatorsVotes.map((senator) => {
             const totalYes = senator.total.yes
             const totalNo = senator.total.no
-            console.log("total yes ", totalYes)
+            const bill = senator.bill.number
+          
           return (
-             <div> <div>Bill - {senator.bill.number} ({senator.description})</div>
+             <div> <div><Link to="/Bills"  > {senator.bill.number} ({senator.description})</Link></div>
             <Bar
              height={5}
              width={10}
@@ -23,7 +25,7 @@ const BarChart = (props) => {
                 datasets: [
                   {
                     label: "Total # Yes Votes",
-                    data: [totalYes, totalNo],
+                    data: [totalYes],
 
                     backgroundColor: [
                       "rgba(255, 99, 132, 0.5)",
@@ -45,7 +47,7 @@ const BarChart = (props) => {
                   },
                   {
                     label: "Total # No Votes",
-                    data: [senator.position],
+                    data: [totalNo],
 
                     backgroundColor: ["rgba(255, 206, 86, 0.5)"],
                     borderColor: [
