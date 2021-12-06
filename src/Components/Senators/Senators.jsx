@@ -4,6 +4,7 @@ import useForm from "../UseForm/UseForm";
 import { useNavigate } from "react-router";
 import Button from "react-bootstrap/Button";
 import { FloatingLabel } from "react-bootstrap";
+import {BrowserRouter as Router, Routes,Route,Link,Outlet} from 'react-router-dom'
 
 const SenatorScreen = (props) => {
   const { formValues, handleChange, handleSubmit } = useForm(committeeSearch);
@@ -59,8 +60,15 @@ const SenatorScreen = (props) => {
           })}
         </tbody>
       </Table>
-     
+      <div>
+        <outlet />
+     </div>
+     <div>
+     {/* <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} /> */}
+
+     </div>
     </div>
+    
   );
 };
 

@@ -13,6 +13,8 @@ import Nav from "./Nav/Nav.jsx"
 import ProfilePage from './Profile/Profile';
 import SenatorsPage from './Senators/Senators';
 import SenatorByState from './Senators/SenatorByState';
+import VotingPosition from './Senators/VotingPosition';
+import BarChart from './BarChart/BarChart';
 
 function App() {
 const [tokenInfo, setTokenInfo] = useState({})
@@ -32,7 +34,10 @@ useEffect(()=>{
 getCurrentSenators()
 },[])
 
-
+useEffect(()=>{
+ 
+  },[])
+  
 
 //Get user login
 
@@ -62,7 +67,7 @@ const getUserJWT = () => {
 }
 const getUserProfile = async () => {
   const jwt = localStorage.getItem('token');
-  // console.log("This is the UserID " , tokenInfo.user_id)
+  console.log("This is the UserID " , tokenInfo.user_id)
   // console.log("This is the all token info " , tokenInfo)
   let response = await axios.get(`http://127.0.0.1:8000/profile/${tokenInfo.user_id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
  // let response = await axios.get(`http://127.0.0.1:8000/profile/${tokenInfo.user_id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
@@ -71,11 +76,11 @@ const getUserProfile = async () => {
   // senatorLoad(true)
 }
 
-const logOut = ()=>{
-  localStorage.removeItem("token");
-  setTokenInfo({})
-  console.log("logged user out")
-}
+// const logOut = ()=>{
+//   localStorage.removeItem("token");
+//   setTokenInfo({})
+//   console.log("logged user out")
+// }
 //register user
 const registerUser = async (objectBeingPassedIn) => {
 
@@ -129,16 +134,16 @@ const filterSenators=(objectpassed)=>{
   setSenatorByStateInput(senator)
 }
 
-const getSenatorVotingRecord= async () => {
- 
-  let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
-  console.log("These are the Senators votesfrom API " + response.results.votes)
-  setSenatorVoteList(response.results.votes)  
+const getSenatorVotingRecord= async (objectfromform) => {
+  let memberId = objectfromform.id
+  let response = await axios.get(`https://api.propublica.org/congress/v1/members/${memberId}/votes.json`, { headers: {"X-API-Key": propublicakey}})
+  console.log("These are the Senators votes from API " , response.data.results[0].votes)
+  setSenatorVoteList(response.data.results[0].votes)  
 }
 const getAllBills= async () => {
   
   let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
-  console.log("These are the Senators votesfrom API " + response.results.votes)
+  console.log("These are the Senators votesfrom API " , response.results.votes)
   setSenatorVoteList(response.results.votes)  
 }
 const getSpecificBill= async () => {
@@ -164,22 +169,28 @@ const getCommittee= async (objectpassed) => {
 }
   return (
 
-    
+    <Router>
       <div className="background">
-        <Router>
-          <Nav logoutUser={logOut} />
+        
+          <Nav  />
           <Routes>
             <Route path="/Profile" element={<ProfilePage user={userInfo} senators={senatorByState} />}/>
             <Route path="/Login" element={<LoginScreen loginUserCall={loginUser} registerUser={registerUser} />} />        
             <Route path="/UserRegistration" element={<RegistrationScreen registerUser={registerUser} />} />
             <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} />
             {/* <Route path="/" element={<HomePage />} /> */}
-            <Route path="/Senators" element={<SenatorsPage senator={specficSenator} senatorInfo={senatorInfo}  getCommittee={getCommittee}/>} 
-              // <Route path="/Senators" element={<SenatorsPage senators={senatorList} senatorInfo={senatorInfo}/>}
-            />
+            <Route path="Senators" element={<SenatorsPage senator={senatorByState} senatorInfo={senatorInfo}  getCommittee={getCommittee}/>}> 
+
+              {/* <Route path="/" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} /> */}
+            </Route>
+            <Route path="VotingPosition" element={<VotingPosition senator={senatorByState} senatorInfo={senatorInfo} senatorsVotes={senatorVoteList}  getVotingPosition={getSenatorVotingRecord}/>}/> 
+            <Route path="/BarChart" element={<BarChart registerUser={registerUser} />} />
+          
           </Routes>
-        </Router> 
+          
+       
     </div>
+    </Router> 
   );
 }
 

@@ -51,7 +51,7 @@ const RegistrationScreen = (props) =>
                         <option value="CO">Colorado</option>
                         <option value="CT">Connecticut</option>
                         <option value="DE">Delaware</option>
-                        <option value="FL">Flordia</option>
+                        <option value="FL">Florida</option>
                         <option value="GA">Georgia</option>
                         <option value="HI">Hawaii</option>
                         <option value="ID">Idaho</option>

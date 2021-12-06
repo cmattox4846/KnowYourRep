@@ -50,12 +50,13 @@ class Nav extends Component{
                 <Link to="/Profile">Profile</Link>
                 <Link to="/UserRegistration">Registration</Link>
                 <Link to="/Senators" >Senators</Link>
+                <Link to="/VotingPosition" >Voting Position</Link>
                 <Link to="/SenatorsByState" >SenatorsByState</Link>
+                <Link to="/BarChart" >Graphs</Link>
                 
                 
                 
-                {/* <Link to="/ShoppingCart">Shopping Cart</Link>
-                <Link to="/sellProducts" >Sell Products</Link> */}
+               
                 <Link to="/login" onClick={this.handleLogout}>Logout Here</Link>
                 
                 
