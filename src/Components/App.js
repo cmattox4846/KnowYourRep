@@ -15,6 +15,7 @@ import SenatorsPage from './Senators/Senators';
 import SenatorByState from './Senators/SenatorByState';
 import VotingPosition from './Senators/VotingPosition';
 import BarChart from './BarChart/BarChart';
+import BillsSearch from './Bills/Bills';
 
 function App() {
 const [tokenInfo, setTokenInfo] = useState({})
@@ -27,6 +28,7 @@ const [senatorByStateInput, setSenatorByStateInput] = useState([])
 const [senatorInfo, setSenatorInfo] = useState([])
 const [specficSenator, setSpecificSenator] = useState([])
 const [senatorLoad, setSenatorLoad] = useState(false)
+const [billInfo, setbillInfo] = useState([])
 
 
 
@@ -146,7 +148,7 @@ const getAllBills= async () => {
   console.log("These are the Senators votesfrom API " , response.results.votes)
   setSenatorVoteList(response.results.votes)  
 }
-const getSpecificBill= async () => {
+const getSpecificBill= async (objectpassed) => {
  
   let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
   console.log("These are the Senators votesfrom API " + response.results.votes)
@@ -184,8 +186,8 @@ const getCommittee= async (objectpassed) => {
               {/* <Route path="/" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} /> */}
             </Route>
             <Route path="VotingPosition" element={<VotingPosition senator={senatorByState} senatorInfo={senatorInfo} senatorsVotes={senatorVoteList}  getVotingPosition={getSenatorVotingRecord}/>}/> 
-            <Route path="/BarChart" element={<BarChart registerUser={registerUser} />} />
-          
+            <Route path="/BarChart" element={<BarChart senatorsVotes={senatorVoteList} />} />
+            <Route path="/Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} />} />
           </Routes>
           
        
