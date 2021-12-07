@@ -42,8 +42,7 @@ const BillsSearch = (props) => {
           <tr>
             {" "}
             <td>
-              Bill ID - {props.billInfo.bill} Tracking Link -{" "}
-              {props.billInfo.govtrack_url}
+              Bill ID - {props.billInfo.bill} <a href={props.billInfo.govtrack_url}>Tracking Link</a>
             </td>{" "}
           </tr>
           <tr>

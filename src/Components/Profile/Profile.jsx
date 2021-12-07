@@ -1,10 +1,14 @@
-
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-import React, { useEffect, useState} from 'react';
+import React, { useNavigate} from 'react';
 
 const ProfilePage = (props) => {
-    
+   
+    // let navigate= useNavigate();
+
+//   async function editForm() {
+//     navigate("/updateProfileForm");
+//   }
 
     return (  
        
@@ -22,7 +26,7 @@ const ProfilePage = (props) => {
                                     <td>Zip Code: {props.user.zip_code}</td> 
                                     <td>Party Affiliation: {props.user.party}</td> 
                                     
-                                    <td><Button variant="primary" onClick={() => props.edit()}>Update Profile</Button></td>                                   
+                                    {/* <td><Button variant="primary" onClick={() => editForm()}>Update Profile</Button></td>                                    */}
                                 </tr>
                             </tbody>
                         </Table>

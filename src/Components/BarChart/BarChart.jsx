@@ -20,8 +20,8 @@ const BarChart = (props) => {
              Members Voting Position: {senator.position}
              </div>
             <Bar
-             height={5}
-             width={10}
+             height={1}
+             width={2}
               data={{
                 labels: ["Votes"],
 

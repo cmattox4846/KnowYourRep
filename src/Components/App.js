@@ -116,6 +116,22 @@ const registerUser = async (objectBeingPassedIn) => {
   await axios.post('http://127.0.0.1:8000/api/auth/register/', newUser)
 }
 
+const editUser = async (objectBeingPassedIn) => {
+ let id = tokenInfo.user_id
+  let updatedUser = {
+      first_name: objectBeingPassedIn.firstName,
+      last_name: objectBeingPassedIn.lastName,
+      password: objectBeingPassedIn.password,
+      username: objectBeingPassedIn.userName,
+      email: objectBeingPassedIn.email,
+      state: objectBeingPassedIn.state,
+      zip_code:objectBeingPassedIn.zip_code,
+      party:objectBeingPassedIn.party
+
+  }
+
+  await axios.put(`http://127.0.0.1:8000/profile/${id}/`, updatedUser)
+}
 // const getNotes = async () => {
 //   const jwt = localStorage.getItem('token');
 //   let response = await axios.get('https://127.0.0.1:8000/note', { headers: {Authorization: 'Bearer ' + jwt}})
@@ -194,11 +210,11 @@ const getCommittee= async (objectpassed) => {
         
           <Nav  logout={logOut} />
           <Routes>
-            <Route path="/Profile" element={<ProfilePage user={userInfo} senators={senatorByState} />}/>
+            <Route path="/Profile" element={<ProfilePage user={userInfo} senators={senatorByState} editUser={editUser} />}/>
             <Route path="/Login" element={<LoginScreen loginUserCall={loginUser} registerUser={registerUser} />} />        
             <Route path="/UserRegistration" element={<RegistrationScreen registerUser={registerUser} />} />
             <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} />
-            
+            <Route path="/updateProfileFrom" element={<RegistrationScreen registerUser={registerUser} />} />
             <Route path="/Senators" element={<SenatorScreen senator={senatorByState} specificSenator={specficSenator}senatorInfo={senatorInfo}  getCommittee={getCommittee}/>}> 
               {/* <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />}></Route> */}
              
