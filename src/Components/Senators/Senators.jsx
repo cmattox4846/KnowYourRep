@@ -62,7 +62,7 @@ const SenatorScreen = (props) => {
         </tbody>
       </Table>
       <div>
-        <outlet />
+        
      </div>
      <div>
     

@@ -1,15 +1,15 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: linear-gradient(to right, #b92b27, #1565c0);
+    background: linear-gradient(to right, gray, #7096c2);
     
-}
+} */
 
-.card {
+/* .card {
     margin-bottom: 20px;
     border: none
-}
+} */
 
 .box {
     width: 500px;
@@ -53,7 +53,7 @@ body {
 .box input[type="text"]:focus,
 .box input[type="password"]:focus {
     width: 300px;
-    border-color: #2ecc71
+    border-color: #2e9fcc
 }
 
 .box input[type="submit"] {
@@ -62,7 +62,7 @@ body {
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #2ecc71;
+    border: 2px solid #2e9fcc;
     padding: 14px 40px;
     outline: none;
     color: white;
@@ -72,7 +72,7 @@ body {
 }
 
 .box input[type="submit"]:hover {
-    background: #2ecc71
+    background: #2e9fcc
 }
 
 .forgot {
