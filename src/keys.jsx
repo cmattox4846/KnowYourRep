@@ -1,1 +1,0 @@
-export const propublicakey = "FjljLchT4HmulA3FxpGOskwbhkzMxdqG9ZQOKN1X"
