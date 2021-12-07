@@ -1,4 +1,4 @@
-
+import "./UserRegistration.css";
 import Form from 'react-bootstrap/Form'
 import useForm from "../UseForm/UseForm";
 import { useNavigate } from "react-router";
@@ -21,8 +21,11 @@ const RegistrationScreen = (props) =>
 
     
         return (
-            <div className="formCreate">
-                <Form onSubmit={handleSubmit}>
+            <div className="container">
+    <div className="row">
+        <div className="col-md-4">
+            <div className="card">
+            <Form onSubmit={handleSubmit} className="box">
                     <Form.Group>
                         <Form.Label>First Name:  </Form.Label>
                         <Form.Control type="text" name='firstName' onChange={handleChange} required={true}/>
@@ -39,6 +42,7 @@ const RegistrationScreen = (props) =>
                         <Form.Control type="email" name='email' onChange={handleChange} required={true}/>
                     </Form.Group>
                    
+                    <Form.Label>State</Form.Label>
                     <Form.Select type="text" name='state' onChange={handleChange} required={true} >
 
                       
@@ -101,12 +105,9 @@ const RegistrationScreen = (props) =>
                         <Form.Label>Zip Code: </Form.Label>
                         <Form.Control type="text" name='zip_code' onChange={handleChange}required={true}/>
                     </Form.Group>
-                    {/* <Form.Group>
-                        <Form.Label>Party: </Form.Label>
-                        <Form.Control type="text" name='party' onChange={handleChange}required={true}/>
-                    </Form.Group> */}
+                   
                     
-                    <FloatingLabel controlId="floatingSelect" label="Party Afiliation:">
+                    <Form.Label>Choose Party Affiliation </Form.Label>
                         <Form.Select  type="text" name='party' onChange={handleChange}required={true} aria-label="Floating label select example">
                        
                             <option>Party Afiliation</option>
@@ -115,7 +116,7 @@ const RegistrationScreen = (props) =>
                             <option value="Independent">Independent</option>
                             <option value="None">None</option>
                         </Form.Select>
-                    </FloatingLabel> 
+                    
                     <Form.Group>
                         <Form.Label>Username: </Form.Label>
                         <Form.Control type="text" name='userName' onChange={handleChange} required={true}/>
@@ -128,9 +129,15 @@ const RegistrationScreen = (props) =>
                     
                    
                    
-                    <Button className="button" type="submit">Create User</Button>
+                    <input  type="submit"></input>
                 </Form>
             </div>
+        </div>
+    </div>
+</div>
+       
+
+            
         )
     }
 

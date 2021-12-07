@@ -18,28 +18,43 @@ body {
     top: 50%;
     left: 50%;
     background: linear-gradient(to bottom, white,gray);
+    text-align: center;
+    transition: 0.25s;
     border-radius: 2em;
     border-color:darkgray;
     border-width: 25;
     border-style: groove;
     box-shadow: 3px 3px 8px 3px darkgray;
-    text-align: center;
-    transition: 0.25s;
-    margin-top: 100px
+    margin-top: 50px
 }
-
 .box input[type="text"],
+.box input[type="email"],
 .box input[type="password"] {
     border: 0;
     background: none;
     display: block;
-    margin: 20px auto;
+    margin: 10px auto;
     text-align: center;
     border: 2px solid #050607;
-    padding: 10px 10px;
+    padding: 1px 5px;
     width: 250px;
     outline: none;
     color: white;
+    border-radius: 24px;
+    transition: 0.25s
+}
+
+.box select[type="text"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #050607;
+    padding: 1px 5px;
+    width: 250px;
+    outline: none;
+    color: black;
     border-radius: 24px;
     transition: 0.25s
 }
@@ -50,7 +65,13 @@ body {
     font-weight: 500
 }
 
+.box select[type="text"]:focus {
+    width: 300px;
+    border-color: #2ecc71
+}
+
 .box input[type="text"]:focus,
+.box input[type="email"]:focus,
 .box input[type="password"]:focus {
     width: 300px;
     border-color: #2ecc71
@@ -62,7 +83,7 @@ body {
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #2ecc71;
+    border: 2px solid #2e9fcc;
     padding: 14px 40px;
     outline: none;
     color: white;
@@ -72,7 +93,7 @@ body {
 }
 
 .box input[type="submit"]:hover {
-    background: #2ecc71
+    background: #2e9fcc
 }
 
 .forgot {
