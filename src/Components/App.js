@@ -1,12 +1,9 @@
 import React, { useEffect, useState} from 'react';
-// import HomePage from './components/HomePage/HomePage';
 import LoginScreen from './Login/Login';
 import axios from 'axios';
 import { propublicakey } from '../keys';
 import RegistrationScreen from './UserRegistration/UserRegistration';
-// import ProfilePage from './components/ProfilePage/ProfilePage';
-import jwtDecode from 'jwt-decode'
-// import DetailTable from './components/ProductDetail/ProductDetail';
+import jwtDecode from 'jwt-decode';
 import './App.css';
 import {BrowserRouter as Router, Routes,Route,Link,Outlet} from 'react-router-dom'
 import Nav from "./Nav/Nav.jsx"
@@ -16,6 +13,7 @@ import VotingPosition from './Senators/VotingPosition';
 import BarChart from './BarChart/BarChart';
 import BillsSearch from './Bills/Bills';
 import SenatorScreen from './Senators/Senators';
+import BillByDate from './Bills/BillByDate';
 
 function App() {
 const [tokenInfo, setTokenInfo] = useState({})
@@ -30,6 +28,7 @@ const [specficSenator, setSpecificSenator] = useState([])
 const [senatorLoad, setSenatorLoad] = useState(false)
 const [logoutStatus, setlogoutStatus] = useState(false)
 const [billInfo, setbillInfo] = useState([])
+const [billDateInfo, setbillDateInfo] = useState([])
 
 
 
@@ -173,12 +172,12 @@ const getSenatorVotingRecord= async (objectfromform) => {
   console.log("These are the Senators votes from API " , response.data.results[0].votes)
   setSenatorVoteList(response.data.results[0].votes)  
 }
-const getAllBills= async () => {
+// const getAllBills= async () => {
   
-  let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
-  console.log("These are the Senators votesfrom API " , response.results.votes)
-  setSenatorVoteList(response.results.votes)  
-}
+//   let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
+//   console.log("These are the Senators votesfrom API " , response.results.votes)
+//   setSenatorVoteList(response.results.votes)  
+// }
 
 
 const getSpecificBill= async (objectpassed) => {
@@ -188,6 +187,13 @@ const getSpecificBill= async (objectpassed) => {
   console.log("Specific Bill " , response.data.results[0])
   setbillInfo(response.data.results[0])  
 }
+const getBillByDate= async (objectpassed) => {
+  console.log(objectpassed.start_date, objectpassed.end_date)
+  let response = await axios.get(`https://api.propublica.org/congress/v1/senate/votes/${objectpassed.start_date}/${objectpassed.end_date}.json`, { headers: {"X-API-Key": propublicakey}})
+  console.log("Specific Bill By Date " , response.data.results.votes)
+  setbillDateInfo(response.data.results.votes)  
+}
+
 
 // const getSpecificSenator= async (obj) => {
  
@@ -222,11 +228,16 @@ const getCommittee= async (objectpassed) => {
             </Route>
             <Route path="VotingPosition" element={<VotingPosition senator={senatorByState} senatorInfo={senatorInfo} senatorsVotes={senatorVoteList}  getVotingPosition={getSenatorVotingRecord}/>}/> 
             <Route path="BarChart" element={<BarChart senatorsVotes={senatorVoteList} getBills={getSpecificBill}/>} />
-            <Route path="Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} />} />
+            <Route path="Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} getBillByDate={getBillByDate}/>} />
+            <Route path="BillByDate" element={<BillByDate billInfo={billDateInfo}  getBillByDate={getBillByDate}/>} />
+
           </Routes>
-          
+         
        
     </div>
+    
+    {/* <Footer /> */}
+    
     </Router> 
   );
 }

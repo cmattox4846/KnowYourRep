@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button";
+
 import { useNavigate } from "react-router";
 import useForm from "../UseForm/UseForm";
 import "./Login.css";
@@ -56,30 +56,7 @@ const LoginScreen = (props) => {
 </div>
        
 
-     
-        //    maxWidth="lg"
-        //    style={{borderStyle:"dashed", borderColor: "red"}}>
-        //    <Box style
-        //     <Form onSubmit= {handleSubmit}>
-        //         <Form.Group className="mb-3" controlId="formBasicEmail">
-        //           <Form.Label>User Name</Form.Label>
-        //           <Form.Control type="username" name="username" placeholder="Enter UserName" onChange= {handleChange} required= {true}/>
-
-        //         </Form.Group>
-
-        //         <Form.Group className="mb-3" controlId="formBasicPassword">
-        //           <Form.Label>Password</Form.Label>
-        //           <Form.Control type="password" name="password" placeholder="Password" onChange= {handleChange} required= {true}/>
-        //         </Form.Group>
-
-        //         <Button variant="primary" type="submit" >
-        //           Submit
-        //         </Button>
-        //     </Form>
-        //   <div><p>Not a User Yet!  <Link to="/userRegistration">Create User</Link></p></div>
-        //    </Container>
-        // </div> */}
-
+   
     );
 }
 
