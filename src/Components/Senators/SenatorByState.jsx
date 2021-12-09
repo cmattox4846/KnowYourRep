@@ -129,7 +129,7 @@ const SenatorByState = (props) => {
                                 {props.senatorByStateInput.map((senator) => {
                                  return(
                                     <tr key={senator.id}>
-                                        <td className="Statecell1"><Link to='/Senators' state={{senator_id: senator.id}}>{senator.id}</Link></td>
+                                        <td className="Statecell1"><Link to='/Senators' state={{id: senator.id}}>{senator.id}</Link></td>
                                         <td className="Statecell1">{senator.first_name}</td>
                                         <td className="Statecell1">{senator.last_name}</td>
                                         <td className="Statecell1">{senator.party}</td>

@@ -15,9 +15,9 @@ import {
   Outlet,
 } from "react-router-dom";
 import { propublicakey } from '../../keys';
-import { unstable_composeClasses } from '@mui/base';
 
-const SenatorScreen = (props) => {
+
+const SenatorScreen = () => {
   const [committeeInfo, setCommitteeInfo] = useState([]);
   const [specificSenator, setSpecificSenator] = useState([]);
 
@@ -28,7 +28,7 @@ const SenatorScreen = (props) => {
   
   const getCommittee = async (objectpassed) => {
     console.log("object coming in  to committee",objectpassed)
-     let response = await axios.get(`https://api.propublica.org/congress/v1/members/${objectpassed}.json`, { headers: {"X-API-Key": propublicakey}})
+     let response = await axios.get(`https://api.propublica.org/congress/v1/members/${objectpassed.id}.json`, { headers: {"X-API-Key": propublicakey}})
      console.log("These are the Senators committees" , response.data.results[0].roles[0].committees)
      setCommitteeInfo(response.data.results[0].roles[0].committees)
      setSpecificSenator(response.data.results[0])  
@@ -39,75 +39,91 @@ const SenatorScreen = (props) => {
     if ( location.state !== undefined)
   {
     console.log("Location data", location)
-    getCommittee(location.state.senator_id)
+    getCommittee(location.state)
   }
-  else
-  {
-   return <div></div>
-  }
+ 
 
-    },[])
-  async function committeeSearch() {
-    props.getCommittee(formValues);
+    },[location])
+    useEffect(()=>{
+    // force rerender
+  
+      },[specificSenator])
+
+ 
+      console.log("This is SpecificSenator",specificSenator)
+    async function committeeSearch() {
+    getCommittee(formValues);
 
     // let navigate= useNavigate();
   }
 
   return (
     <div className="container">
-      <div className=" col">
-      <div className="row">
-        <div>
-          <div className="col-12">
-            <div className="card">
+          <div className="row">
+                    <div className="col-md-5">
+                      <div className=" Senatortable2">
+                        <table className="Senatorwrapper1">
+                             <tbody><tr>
+                             </tr>
+                                 <tr > <td className="SenatorcellLeft">Senate Member ID</td><td className="Senatorcell">{specificSenator.id}</td></tr>
+                                 <tr > <td className="SenatorcellLeft">Name</td><td className="Senatorcell">{specificSenator.first_name} {specificSenator.last_name}</td></tr>
+                                 <tr > <td className="SenatorcellLeft">Office Goverment Site</td><td className="Senatorcell"><a href={specificSenator.url}>{specificSenator.url}</a></td></tr>
+                                 <tr > <td className="SenatorcellLeft">Party</td><td className="Senatorcell">{specificSenator.current_party}</td></tr>
+             
+                 
+                        <tr > <td className="SenatorcellLeft">State</td><td className="Senatorcell">{specificSenator.roles[0].state}</td></tr>
+                        <tr > <td className="SenatorcellLeft">State Rank</td><td className="Senatorcell">{specificSenator.roles[0].state_rank}</td></tr>
+                        <tr > <td className="SenatorcellLeft">Total Votes</td><td className="Senatorcell">{specificSenator.roles[0].total_votes}</td></tr>
+                        <tr > <td className="SenatorcellLeft">Vote % With Party</td><td className="Senatorcell">{specificSenator.roles[0].votes_with_party_pct}%</td></tr>
+                        <tr > <td className="SenatorcellLeft">Vote % Against Party</td><td className="Senatorcell">{specificSenator.roles[0].votes_against_party_pct}%</td></tr>
+                        <tr > <td className="SenatorcellLeft">Contact Directly</td><td className="Senatorcell"><a href ={specificSenator.roles[0].contact_form}>{specificSenator.roles[0].contact_form}</a></td></tr>
+                        <tr > <td className="SenatorcellLeft">Phone Number</td><td className="Senatorcell">{specificSenator.roles[0].phone}</td></tr>
+                        <tr > <td className="SenatorcellLeft">Office Location</td><td className="Senatorcell">{specificSenator.roles[0].office}</td></tr>
+                                                          
+                             </tbody>
+                         </table>
+                      </div>
+                    </div>
               
-              <Form onSubmit={handleSubmit} className="box">
-              <p>Search Members Committee Affiliation</p>
-                <Form.Group>
-                  <Form.Label>Members ID </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="id"
-                    onChange={handleChange}
-                    required={true}
-                  />
-                </Form.Group>
-                <Button className="button" type="submit">
-                  Search Senator
-                </Button>
-              </Form>
-            </div>
-          </div>
-
-          </div>
-        </div>
-      <div className="table">
+         
+                
+      
         
-        <table className="wrapper">
-          <thead>
-            <tr className="header">
-              <td className="cell">
-                {console.log(specificSenator)}
-                {specificSenator.first_name}{" "}
-                {specificSenator.last_name} Is A Member Of These
-                Committees
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr></tr>
-            {committeeInfo.map((committee) => {
-              return (
-                <tr key={committee.id}>
-                  <td className="cell1">{committee.name}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        </div>
+
+          <div className="col-md-7 ">
+      
+          
+        
+                          <div className="Senatortable2">
+                            
+                            <table className="Senatorwrapper">
+                              <thead>
+                                <tr>
+                                  <td className="Senatorcell">
+                                    {/* {console.log(specificSenator)} */}
+                                    <h6>{specificSenator.first_name}{" "}
+                                    {specificSenator.last_name} Is Currently A Member Of These
+                                    Committees</h6>
+                                  </td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr></tr>
+                                {committeeInfo.map((committee) => {
+                                  return (
+                                    <tr key={committee.id}>
+                                      <td className="Senatorcell">{committee.name}</td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                            </div>
+            </div> 
       </div>
-    </div>
+      </div>
+      
+    
   );
 };
 
