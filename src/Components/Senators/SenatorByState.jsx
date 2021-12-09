@@ -1,9 +1,17 @@
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import useForm from "../UseForm/UseForm";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Button from "react-bootstrap/Button";
-import { FloatingLabel } from "react-bootstrap";
+import { FloatingLabel } from "react-bootstrap"; 
+import "./SenatorByState.css"
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Outlet,
+} from "react-router-dom";
 
  
     
@@ -12,18 +20,22 @@ const SenatorByState = (props) => {
   // let navigate= useNavigate();
   const { formValues, handleChange, handleSubmit } = useForm(filterbystate);
 
+  
+
+  
   async function filterbystate() {
     props.filteredSenator(formValues);
     console.log(formValues)
   }
 
     return(
+      <div>
       <div className="container">
         <div className="row">
             <div className="col-md-3"></div>
             <div className="col-md-6">
             
-            <Form onSubmit={handleSubmit} className="Registrationbox">
+            <Form onSubmit={handleSubmit} className="Statebox">
             <Form.Label>Search For Senator By State</Form.Label>
                 <Form.Select
                   type="text"
@@ -31,7 +43,7 @@ const SenatorByState = (props) => {
                   onChange={handleChange}
                   required={true}
                 >
-                  <option> </option>
+                  <option value="">Choose A State</option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
                   <option value="AZ">Arizona</option>
@@ -90,20 +102,25 @@ const SenatorByState = (props) => {
      
       <div className="col-md-3"></div>
       </div>
-      <div className="row">
-      <div className="col-md-12>">
-      {/* <div><h2>{formValuesState.state}'s Senators Representing </h2></div> */}
-                    <Table>
+      </div>
+      
+      <div className="container">
+     
+        <div className="col-md-12 ">
+        <div className="col-md-2"></div>
+        <div className="col-md-8 text-center">
+      <div className=" Statetable2">
+            <table className="Statewrapper">
                     
                                 <thead>
-                                    <tr>
-                                        <td>Member ID </td>
-                                        <td>First Name </td>
-                                        <td>Last Name </td>
-                                        <td>Party Abv.</td>
-                                        <td>State </td>
-                                        <td>Office Address </td>
-                                        <td>Phone</td>
+                                    <tr >
+                                        <td className="Statecellheader">Member ID </td>
+                                        <td className="Statecellheader">First Name </td>
+                                        <td className="Statecellheader">Last Name </td>
+                                        <td className="Statecellheader">Party Abv.</td>
+                                        <td className="Statecellheader">State </td>
+                                        <td className="Statecellheader">Office Address </td>
+                                        <td className="Statecellheader">Phone</td>
     
                                     </tr>
                                 </thead>
@@ -112,13 +129,13 @@ const SenatorByState = (props) => {
                                 {props.senatorByStateInput.map((senator) => {
                                  return(
                                     <tr key={senator.id}>
-                                        <td>{senator.id}</td>
-                                        <td>{senator.first_name}</td>
-                                        <td>{senator.last_name}</td>
-                                        <td>{senator.party}</td>
-                                        <td>{senator.state}</td>
-                                        <td>{senator.office}</td>
-                                        <td>{senator.phone}</td>
+                                        <td className="Statecell1"><Link to='/Senators' state={{senator_id: senator.id}}>{senator.id}</Link></td>
+                                        <td className="Statecell1">{senator.first_name}</td>
+                                        <td className="Statecell1">{senator.last_name}</td>
+                                        <td className="Statecell1">{senator.party}</td>
+                                        <td className="Statecell1">{senator.state}</td>
+                                        <td className="Statecell1">{senator.office}</td>
+                                        <td className="Statecell1">{senator.phone}</td>
                                         
                                         
                                         </tr>
@@ -126,10 +143,15 @@ const SenatorByState = (props) => {
                                  )
                                 })}
                                 </tbody>
-                            </Table>
+                            </table>
+                    </div>
+                    </div>
+                    <div className="col-md-2"></div>
+            
                     </div>
                     </div>
                     </div>
+                    
     )
   }
 

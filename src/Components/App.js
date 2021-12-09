@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import LoginScreen from './Login/Login';
 import axios from 'axios';
-import { propublicakey } from '../keys';
+
 import RegistrationScreen from './UserRegistration/UserRegistration';
 import jwtDecode from 'jwt-decode';
 import './App.css';
@@ -14,6 +14,7 @@ import BarChart from './BarChart/BarChart';
 import BillsSearch from './Bills/Bills';
 import SenatorScreen from './Senators/Senators';
 import BillByDate from './Bills/BillByDate';
+import { propublicakey } from '../keys';
 
 function App() {
 const [tokenInfo, setTokenInfo] = useState({})
@@ -198,13 +199,7 @@ const getBillByDate= async (objectpassed) => {
 //   setSenatorVoteList(response.results.votes)  
 
 // }
-const getCommittee= async (objectpassed) => {
- console.log(objectpassed)
-  let response = await axios.get(`https://api.propublica.org/congress/v1/members/${objectpassed.id}.json`, { headers: {"X-API-Key": propublicakey}})
-  console.log("These are the Senators committees" , response.data.results[0].roles[0].committees)
-  setSenatorInfo(response.data.results[0].roles[0].committees)
-  setSpecificSenator(response.data.results[0])  
-}
+
   return (
 
     <Router>
@@ -217,7 +212,7 @@ const getCommittee= async (objectpassed) => {
             <Route path="/UserRegistration" element={<RegistrationScreen registerUser={registerUser} />} />
             <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} />
             <Route path="/updateProfileFrom" element={<RegistrationScreen registerUser={registerUser} />} />
-            <Route path="/Senators" element={<SenatorScreen senator={senatorByState} specificSenator={specficSenator}senatorInfo={senatorInfo}  getCommittee={getCommittee}/>}> 
+            <Route path="/Senators" element={<SenatorScreen senator={senatorByState} specificSenator={specficSenator}senatorInfo={senatorInfo}  />}> 
               {/* <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />}></Route> */}
              
              

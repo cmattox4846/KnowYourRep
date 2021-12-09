@@ -22,9 +22,9 @@ const RegistrationScreen = (props) =>
     
         return (
             <div className="container">
-    <div className="row">
-    <div className="col-md-3 text-center"></div>
-        <div className="col-md-6 text-center">
+                <div className="row">
+                <div className="col-md-3 text-center"></div>
+                    <div className="col-md-6 text-center">
             
             <Form onSubmit={handleSubmit} className="Registrationbox">
             <h5>User Registration</h5>

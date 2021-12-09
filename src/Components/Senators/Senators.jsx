@@ -1,9 +1,11 @@
-
+import React, { useEffect, useState} from 'react';
 import "./Senator.css"
 import Form from "react-bootstrap/Form";
 import useForm from "../UseForm/UseForm";
-import { useNavigate } from "react-router";
+import {useLocation, useNavigate  } from "react-router";
 import Button from "react-bootstrap/Button";
+import axios from 'axios';
+
 
 import {
   BrowserRouter as Router,
@@ -12,12 +14,39 @@ import {
   Link,
   Outlet,
 } from "react-router-dom";
+import { propublicakey } from '../../keys';
+import { unstable_composeClasses } from '@mui/base';
 
 const SenatorScreen = (props) => {
+  const [committeeInfo, setCommitteeInfo] = useState([]);
+  const [specificSenator, setSpecificSenator] = useState([]);
+
+
   const { formValues, handleChange, handleSubmit } = useForm(committeeSearch);
 
+  const location = useLocation();
+  
+  const getCommittee = async (objectpassed) => {
+    console.log("object coming in  to committee",objectpassed)
+     let response = await axios.get(`https://api.propublica.org/congress/v1/members/${objectpassed}.json`, { headers: {"X-API-Key": propublicakey}})
+     console.log("These are the Senators committees" , response.data.results[0].roles[0].committees)
+     setCommitteeInfo(response.data.results[0].roles[0].committees)
+     setSpecificSenator(response.data.results[0])  
+   }
   // let navigate= useNavigate();
+  useEffect(()=>
+  {
+    if ( location.state !== undefined)
+  {
+    console.log("Location data", location)
+    getCommittee(location.state.senator_id)
+  }
+  else
+  {
+   return <div></div>
+  }
 
+    },[])
   async function committeeSearch() {
     props.getCommittee(formValues);
 
@@ -58,16 +87,16 @@ const SenatorScreen = (props) => {
           <thead>
             <tr className="header">
               <td className="cell">
-                {console.log(props.specificSenator)}
-                {props.specificSenator.first_name}{" "}
-                {props.specificSenator.last_name} Is A Member Of These
+                {console.log(specificSenator)}
+                {specificSenator.first_name}{" "}
+                {specificSenator.last_name} Is A Member Of These
                 Committees
               </td>
             </tr>
           </thead>
           <tbody>
             <tr></tr>
-            {props.senatorInfo.map((committee) => {
+            {committeeInfo.map((committee) => {
               return (
                 <tr key={committee.id}>
                   <td className="cell1">{committee.name}</td>

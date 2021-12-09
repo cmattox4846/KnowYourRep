@@ -1,24 +1,24 @@
 
 
 
-.SBSbox {
+.Statebox {
     /* width: 500px; */
-    padding: 40px;
+    padding: 15px 0 0 0;
     /* position: relative; */
     /* top: 10%; */
     /* left: 50%; */
     background: linear-gradient(to bottom, white,gray);
+    text-align: center;
+    transition: 0.25s;
     border-radius: 2em;
     border-color:darkgray;
     border-width: 25;
     border-style: groove;
     box-shadow: 3px 3px 8px 3px darkgray;
-    text-align: center;
-    transition: 0.25s;
-    margin-top: 100px
+    margin-top: 15px
 }
 
-.SBSbox input[type="text"]
+.Statebox select[type="text"]
 {
     border: 0;
     background: none;
@@ -29,24 +29,24 @@
     padding: 10px 10px;
     width: 250px;
     outline: none;
-    color: white;
+    color: black;
     border-radius: 24px;
     transition: 0.25s
 }
 
-.SBSbox h1 {
+.Statebox h1 {
     color: white;
     text-transform: uppercase;
     font-weight: 500
 }
 
-.SBSbox input[type="text"]:focus,
-.SBSbox input[type="password"]:focus {
+.Statebox input[type="text"]:focus,
+.Statebox input[type="password"]:focus {
     width: 300px;
     border-color: #2e9fcc
 }
 
-.SBSbox input[type="submit"] {
+.Statebox input[type="submit"] {
     border: 0;
     background: #2e9fcc;
     display: block;
@@ -61,48 +61,48 @@
     cursor: pointer
 }
 
-.SBSbox input[type="submit"]:hover {
+.Statebox input[type="submit"]:hover {
     background: #39c6fd
 }
 
 
-  .SBSwrapper {
+  .Statewrapper {
     /* margin: 0 30% 25%  0; */
     /* padding: 40px; */
     width: 90vw;
   }
 
-  .SBSwrapper1 {
-    /* margin: 20 0 0  0; */
-    /* padding: 40px; */
+  .Statewrapper1 {
+    margin: 20 0 0  0;
+    padding: 40px;
     width: 100%;
   }
   
-  
-  .SBStable1 {
+/*   
+  .Statetable1 {
     margin: 2  40px 0;
-    width: 100%;
+    width: 25%;
     padding: 40px 40px;
-   
-    
     display: block;
-  }
-  .SBStable2 {
+  } */
+
+
+  .Statetable2 {
     margin: 20 0 0 0;
     width: 100%;
     padding: 20px 0 0 0;
-   
-    
     display: block;
   }
+
+
   @media screen and (max-width: 580px) {
-    .SBStable {
+    .Statetable {
       display: block;
     }
   }
   
  
-  .SBS.header {
+  .State.header {
     font-weight: 20px;
     color: black;
     background: lightgray;
@@ -110,13 +110,13 @@
   }
   
   @media screen and (max-width: 580px) {
-    .SBSrow {
+    .Staterow {
       padding: 8px 0;
       display: block;
     }
   }
   
-  .SBScellheader {
+  .Statecellheader {
     padding: 6px 12px;
     display: table-cell;
     background: rgb(148, 148, 148);
@@ -129,7 +129,7 @@
 
   }
   
-  .SBScellSBS {
+  .StatecellState {
     padding: 6px 12px;
     display: table-cell;
     font-size: 25;
@@ -138,10 +138,10 @@
    
 
   }
-  .SBScell1 {
+  .Statecell1 {
     padding: 6px 12px;
     display: table-cell;
-    background: lightgray 0.75;
+    background: lightgray;
     border:darkgray;
     border-style:inset;
     border-width: 1px;
@@ -151,7 +151,7 @@
 
   }
   @media screen and (max-width: 580px) {
-    .SBScell {
+    .Statecell {
       padding: 2px 12px;
       display: block;
     }
