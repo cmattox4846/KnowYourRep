@@ -1,13 +1,18 @@
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import useForm from "../UseForm/UseForm";
-import { Navigate, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Button from "react-bootstrap/Button";
-import { FloatingLabel } from "react-bootstrap";
+import { useEffect } from "react";
 
 const BillsSearch = (props) => {
   // let navigate= useNavigate();
   const { formValues, handleChange, handleSubmit } = useForm(searchByDate);
+  const location = useLocation();
+
+  if( location.state != undefined){
+    console.log(location.state.bill_id)
+  }
 
   let navigate= useNavigate();
 
@@ -19,8 +24,11 @@ const BillsSearch = (props) => {
   async function searchByDate() {
     props.getBillByDate(formValues);
     console.log(formValues);
-    navigate("/BillByDate")
+    navigate("/BillByDate");
   }
+//   useEffect(()=>{
+//  getData()
+//   },[])
 
 
   return (
@@ -45,32 +53,7 @@ const BillsSearch = (props) => {
         </Form>
       </div>
 
-      <div>
-        <h3>Search Bills By Date</h3>
-      </div>
-      <div>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Label>Start Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="start_date"
-              onChange={handleChange}
-              required={true}
-            />
-            <Form.Label>End Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="end_date"
-              onChange={handleChange}
-              required={true}
-            />
-          </Form.Group>
-          <Button className="button" type="submit">
-            Search Bills
-          </Button>
-        </Form>
-      </div>
+     
       
       <Table>
       

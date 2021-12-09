@@ -54,6 +54,7 @@ class Nav extends Component{
                 <Link to="/SenatorsByState" >SenatorsByState</Link>
                 {/* <Link to="/BarChart" >Graphs</Link> */}
                 <Link to="/Bills" >Bills</Link>
+                <Link to="/BillByDate" >Bills By Date</Link>
                 
                 
                 

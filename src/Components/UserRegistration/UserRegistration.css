@@ -1,22 +1,11 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: linear-gradient(to right, gray, #7096c2);
-    
-}
 
-.card {
-    margin-bottom: 20px;
-    border: none
-}
 
-.box {
-    width: 500px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+.Registrationbox {
+    /* width: 500px; */
+    padding: 15px 0 0 0;
+    /* position: relative; */
+    /* top: 10%; */
+    /* left: 50%; */
     background: linear-gradient(to bottom, white,gray);
     text-align: center;
     transition: 0.25s;
@@ -25,15 +14,15 @@ body {
     border-width: 25;
     border-style: groove;
     box-shadow: 3px 3px 8px 3px darkgray;
-    margin-top: 50px
+    margin-top: 15px
 }
-.box input[type="text"],
-.box input[type="email"],
-.box input[type="password"] {
+.Registrationbox input[type="text"],
+.Registrationbox input[type="email"],
+.Registrationbox input[type="password"] {
     border: 0;
     background: none;
     display: block;
-    margin: 10px auto;
+    margin: 5px auto;
     text-align: center;
     border: 2px solid #050607;
     padding: 1px 5px;
@@ -44,7 +33,7 @@ body {
     transition: 0.25s
 }
 
-.box select[type="text"] {
+.Registrationbox select[type="text"] {
     border: 0;
     background: none;
     display: block;
@@ -59,27 +48,27 @@ body {
     transition: 0.25s
 }
 
-.box h1 {
+.Registrationbox h1 {
     color: white;
     text-transform: uppercase;
     font-weight: 500
 }
 
-.box select[type="text"]:focus {
+.Registrationbox select[type="text"]:focus {
     width: 300px;
     border-color: #2ecc71
 }
 
-.box input[type="text"]:focus,
-.box input[type="email"]:focus,
-.box input[type="password"]:focus {
+.Registrationbox input[type="text"]:focus,
+.Registrationbox input[type="email"]:focus,
+.Registrationbox input[type="password"]:focus {
     width: 300px;
     border-color: #2ecc71
 }
 
-.box input[type="submit"] {
+.Registrationbox input[type="submit"] {
     border: 0;
-    background: none;
+    background:  #2e9fcc;
     display: block;
     margin: 20px auto;
     text-align: center;
@@ -92,8 +81,8 @@ body {
     cursor: pointer
 }
 
-.box input[type="submit"]:hover {
-    background: #2e9fcc
+.Registrationbox input[type="submit"]:hover {
+    background: #39c6fd
 }
 
 .forgot {

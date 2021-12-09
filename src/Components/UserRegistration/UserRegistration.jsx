@@ -23,9 +23,11 @@ const RegistrationScreen = (props) =>
         return (
             <div className="container">
     <div className="row">
-        <div className="col-md-4">
-            <div className="card">
-            <Form onSubmit={handleSubmit} className="box">
+    <div className="col-md-3 text-center"></div>
+        <div className="col-md-6 text-center">
+            
+            <Form onSubmit={handleSubmit} className="Registrationbox">
+            <h5>User Registration</h5>
                     <Form.Group>
                         <Form.Label>First Name:  </Form.Label>
                         <Form.Control type="text" name='firstName' onChange={handleChange} required={true}/>
@@ -132,7 +134,9 @@ const RegistrationScreen = (props) =>
                     <input  type="submit"></input>
                 </Form>
             </div>
-        </div>
+        {/* </div> */}
+        <div className="col-md-3"></div>
+        
     </div>
 </div>
        

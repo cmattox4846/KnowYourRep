@@ -1,33 +1,42 @@
-/* 
 
-  .wrapper {
-    margin: 0 30% 25%  0;
-    padding: 40px;
-    max-width: 90vw;
+
+  .Profilewrapper {
+    /* margin: 0 30% 25%  0; */
+    /* padding: 40px; */
+    width: 90vw;
   }
 
-  .wrapper1 {
-    margin: 20 0 0  0;
-    padding: 40px;
-    max-width: 90vw;
+  .Profilewrapper1 {
+    /* margin: 20 0 0  0; */
+    /* padding: 40px; */
+    width: 100%;
   }
   
   
-  .table {
+  .Profiletable1 {
     margin: 2  40px 0;
     width: 100%;
+    padding: 40px 40px;
+   
+    
+    display: block;
+  }
+  .Profiletable2 {
+    margin: 20 0 0 0;
+    width: 100%;
+    padding: 20px 0 0 0;
    
     
     display: block;
   }
   @media screen and (max-width: 580px) {
-    .table {
+    .Profiletable {
       display: block;
     }
   }
   
  
-  .header {
+  .Profile.header {
     font-weight: 20px;
     color: black;
     background: lightgray;
@@ -35,13 +44,13 @@
   }
   
   @media screen and (max-width: 580px) {
-    .row {
+    .Profilerow {
       padding: 8px 0;
       display: block;
     }
   }
   
-  .cell {
+  .Profilecellheader {
     padding: 6px 12px;
     display: table-cell;
     background: rgb(148, 148, 148);
@@ -49,25 +58,37 @@
     border-style:inset;
     border-width: 1px;
     box-shadow: 3px 3px 2px 3px darkgray;
+   text-align: center;
    
 
   }
-  .cell1 {
+  
+  .ProfilecellProfile {
     padding: 6px 12px;
     display: table-cell;
-    background: lightgray;
+    font-size: 25;
+    font-style:bold;
+    text-align: center;
+   
+
+  }
+  .Profilecell1 {
+    padding: 6px 12px;
+    display: table-cell;
+    background: lightgray 0.75;
     border:darkgray;
     border-style:inset;
     border-width: 1px;
-    box-shadow: 3px 3px 2px 3px darkgray;
+    box-shadow: 3px 3px 2px 3px darkgray ;
+    text-align: center;
    
 
   }
   @media screen and (max-width: 580px) {
-    .cell {
+    .Profilecell {
       padding: 2px 12px;
       display: block;
     }
   }
 
- */
+

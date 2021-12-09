@@ -84,7 +84,7 @@ const VotingPosition = (props) => {
                   <tr>
                     {/* <td>{senator.member_id}</td> */}
                     <td className="cell1">{senator.congress}</td>
-                    <td className="cell1">{senator.bill.number}</td>
+                    <td className="cell1"><Link to='/Bills' state={{bill_id: senator.bill.number}}>{senator.bill.number}</Link></td>
                     <td className="cell1">{senator.description}</td>
                     <td className="cell1">{senator.date}</td>
                     <td className="cell1">{senator.question}</td>

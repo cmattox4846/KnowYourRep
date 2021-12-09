@@ -1,23 +1,20 @@
-/* body {
+body {
     margin: 0;
     height:100%;
     padding: 0;
     font-family: sans-serif;
     background: linear-gradient(to right, gray, #7096c2);
     
-} */
+}
 
-/* .card {
-    margin-bottom: 20px;
-    border: none
-} */
 
-.box {
-    width: 500px;
+
+.loginbox {
+    /* width: 500px; */
     padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    /* position: relative; */
+    /* top: 10%; */
+    /* left: 50%; */
     background: linear-gradient(to bottom, white,gray);
     border-radius: 2em;
     border-color:darkgray;
@@ -29,8 +26,8 @@
     margin-top: 100px
 }
 
-.box input[type="text"],
-.box input[type="password"] {
+.loginbox input[type="text"],
+.loginbox input[type="password"] {
     border: 0;
     background: none;
     display: block;
@@ -45,21 +42,21 @@
     transition: 0.25s
 }
 
-.box h1 {
+.loginbox h1 {
     color: white;
     text-transform: uppercase;
     font-weight: 500
 }
 
-.box input[type="text"]:focus,
-.box input[type="password"]:focus {
+.loginbox input[type="text"]:focus,
+.loginbox input[type="password"]:focus {
     width: 300px;
     border-color: #2e9fcc
 }
 
-.box input[type="submit"] {
+.loginbox input[type="submit"] {
     border: 0;
-    background: none;
+    background: #2e9fcc;
     display: block;
     margin: 20px auto;
     text-align: center;
@@ -72,11 +69,11 @@
     cursor: pointer
 }
 
-.box input[type="submit"]:hover {
-    background: #2e9fcc
+.loginbox input[type="submit"]:hover {
+    background: #39c6fd
 }
 
-.forgot {
+.loginforgot {
     text-decoration: underline
 }
 

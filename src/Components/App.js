@@ -38,9 +38,7 @@ useEffect(()=>{
 getCurrentSenators()
 },[])
 
-useEffect(()=>{
-  getUserProfile()
-},[tokenInfo])
+
 
 useEffect(()=>{
   //force refresh for logout
@@ -66,6 +64,7 @@ const getUserJWT = () => {
     console.log("get info from jwt call", info)
     
     setTokenInfo(info)
+    getUserProfile(info)
     
    // setLoadData(!loadData)
     
@@ -78,17 +77,14 @@ const getUserJWT = () => {
 
 
 }
-const getUserProfile = async () => {
+const getUserProfile = async (info) => {
   const jwt = localStorage.getItem('token');
   const id = tokenInfo.user_id
   console.log("This is the UserID " , tokenInfo.user_id)
-  // console.log("This is the all token info " , tokenInfo)
   let response = await axios.get(`http://127.0.0.1:8000/profile/${id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
- // let response = await axios.get(`http://127.0.0.1:8000/profile/${tokenInfo.user_id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
   console.log("This is the profile from API " , response.data)
   setUserInfo(response.data) 
- filterSenatorsOnProfile()
-  // senatorLoad(true)
+ filterSenatorsOnProfile(response.data)
 }
 
 const logOut = ()=>{
@@ -145,14 +141,14 @@ const getCurrentSenators= async () => {
   console.log("These are the Senators from API ", response.data.results[0].members)
   setSenatorList(response.data.results[0].members)
   console.log("This is the state variable senatorList "+ {senatorList})
-  filterSenatorsOnProfile()
+  filterSenatorsOnProfile(userInfo)
   
   
 }
 
-const filterSenatorsOnProfile=()=>{
+const filterSenatorsOnProfile=(userinfo)=>{
   console.log("userInfo", userInfo)
-    const senator = senatorList.filter(sl => sl.state === userInfo.state)
+    const senator = senatorList.filter(sl => sl.state === userinfo.state)
     console.log("filterSenatorsOnProfile", senator)
     setSenatorByState(senator)
 }
@@ -228,7 +224,7 @@ const getCommittee= async (objectpassed) => {
             </Route>
             <Route path="VotingPosition" element={<VotingPosition senator={senatorByState} senatorInfo={senatorInfo} senatorsVotes={senatorVoteList}  getVotingPosition={getSenatorVotingRecord}/>}/> 
             <Route path="BarChart" element={<BarChart senatorsVotes={senatorVoteList} getBills={getSpecificBill}/>} />
-            <Route path="Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} getBillByDate={getBillByDate}/>} />
+            <Route path="/Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} getBillByDate={getBillByDate}/>} />
             <Route path="BillByDate" element={<BillByDate billInfo={billDateInfo}  getBillByDate={getBillByDate}/>} />
 
           </Routes>

@@ -25,9 +25,10 @@ const LoginScreen = (props) => {
     return ( 
   <div className="container">
     <div className="row">
-        <div className="col-md-4">
-            <div className="card">
-            <Form onSubmit= {handleSubmit} className="box">
+        <div className="col-md-3"></div>
+        <div className="col-md-6">
+            
+            <Form onSubmit= {handleSubmit} className="loginbox">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                 <p class="text-muted"> Please enter your login and password!</p>
                   <Form.Label >User Name</Form.Label>
@@ -50,8 +51,9 @@ const LoginScreen = (props) => {
                         
                     </div>
                 </Form>
-            </div>
+            
         </div>
+        <div className="col-md-3"></div>
     </div>
 </div>
        
