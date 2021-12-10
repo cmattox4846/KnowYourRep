@@ -28,8 +28,8 @@ const [senatorInfo, setSenatorInfo] = useState([])
 const [specficSenator, setSpecificSenator] = useState([])
 const [senatorLoad, setSenatorLoad] = useState(false)
 const [logoutStatus, setlogoutStatus] = useState(false)
-const [billInfo, setbillInfo] = useState([])
-const [billDateInfo, setbillDateInfo] = useState([])
+
+
 
 
 
@@ -177,19 +177,13 @@ const getSenatorVotingRecord= async (objectfromform) => {
 // }
 
 
-const getSpecificBill= async (objectpassed) => {
-  const id = objectpassed.bill_id
-  console.log("Bill Id ", objectpassed.bill_id)
-  let response = await axios.get(`https://api.propublica.org/congress/v1/117/bills/${id}.json`, { headers: {"X-API-Key": propublicakey}})
-  console.log("Specific Bill " , response.data.results[0])
-  setbillInfo(response.data.results[0])  
-}
-const getBillByDate= async (objectpassed) => {
-  console.log(objectpassed.start_date, objectpassed.end_date)
-  let response = await axios.get(`https://api.propublica.org/congress/v1/senate/votes/${objectpassed.start_date}/${objectpassed.end_date}.json`, { headers: {"X-API-Key": propublicakey}})
-  console.log("Specific Bill By Date " , response.data.results.votes)
-  setbillDateInfo(response.data.results.votes)  
-}
+
+// const getBillByDate= async (objectpassed) => {
+//   console.log(objectpassed.start_date, objectpassed.end_date)
+//   let response = await axios.get(`https://api.propublica.org/congress/v1/senate/votes/${objectpassed.start_date}/${objectpassed.end_date}.json`, { headers: {"X-API-Key": propublicakey}})
+//   //console.log("Specific Bill By Date " , response.data.results.votes)
+//   setbillDateInfo(response.data.results)  
+// }
 
 
 // const getSpecificSenator= async (obj) => {
@@ -218,9 +212,9 @@ const getBillByDate= async (objectpassed) => {
              
             </Route>
             <Route path="VotingPosition" element={<VotingPosition senator={senatorByState} senatorInfo={senatorInfo} senatorsVotes={senatorVoteList}  getVotingPosition={getSenatorVotingRecord}/>}/> 
-            <Route path="BarChart" element={<BarChart senatorsVotes={senatorVoteList} getBills={getSpecificBill}/>} />
-            <Route path="/Bills" element={<BillsSearch billInfo={billInfo} getBills={getSpecificBill} getBillByDate={getBillByDate}/>} />
-            <Route path="BillByDate" element={<BillByDate billInfo={billDateInfo}  getBillByDate={getBillByDate}/>} />
+            <Route path="BarChart" element={<BarChart senatorsVotes={senatorVoteList}/>} />
+            <Route path="/Bills" element={<BillsSearch  />} />
+            <Route path="BillByDate" element={<BillByDate />} />
 
           </Routes>
          
