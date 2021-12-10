@@ -21,7 +21,7 @@ const [tokenInfo, setTokenInfo] = useState({})
 //const [noteList, setNoteList] = useState({})
 const [userInfo, setUserInfo] = useState({})
 const [senatorList, setSenatorList] = useState([])
-const [senatorVoteList, setSenatorVoteList] = useState([])
+
 const [senatorByState, setSenatorByState] = useState([])
 const [senatorByStateInput, setSenatorByStateInput] = useState([])
 const [senatorInfo, setSenatorInfo] = useState([])
@@ -163,12 +163,7 @@ const filterSenators=(objectpassed)=>{
   setSenatorByStateInput(senator)
 }
 
-const getSenatorVotingRecord= async (objectfromform) => {
-  let memberId = objectfromform.id
-  let response = await axios.get(`https://api.propublica.org/congress/v1/members/${memberId}/votes.json`, { headers: {"X-API-Key": propublicakey}})
-  console.log("These are the Senators votes from API " , response.data.results[0].votes)
-  setSenatorVoteList(response.data.results[0].votes)  
-}
+
 // const getAllBills= async () => {
   
 //   let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
@@ -212,8 +207,8 @@ const getSenatorVotingRecord= async (objectfromform) => {
              
              
             </Route>
-            <Route path="VotingPosition" element={<VotingPosition senator={senatorByState} senatorInfo={senatorInfo} senatorsVotes={senatorVoteList}  getVotingPosition={getSenatorVotingRecord}/>}/> 
-            <Route path="BarChart" element={<BarChart senatorsVotes={senatorVoteList}/>} />
+            <Route path="VotingPosition" element={<VotingPosition />}/> 
+            <Route path="BarChart" element={<BarChart />} />
             <Route path="/Bills" element={<BillsSearch  />} />
             <Route path="BillByDate" element={<BillByDate />} />
 

@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 const NominationSearch = (props)=>{
 
     const {formValues, handleChange, handleSubmit} = UseForm(props.searchNominations);
+   
+   
     return (
         <div className="row">
                     <div className="col-md-6">
