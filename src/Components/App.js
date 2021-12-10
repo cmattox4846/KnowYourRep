@@ -141,16 +141,16 @@ const getCurrentSenators= async () => {
   console.log(response)
   console.log("These are the Senators from API ", response.data.results[0].members)
   setSenatorList(response.data.results[0].members)
-  console.log("This is the state variable senatorList "+ {senatorList})
-  filterSenatorsOnProfile(userInfo)
+  console.log("This is the state variable senatorList ", {senatorList})
+  // filterSenatorsOnProfile(userInfo)
   
   
 }
 
 const filterSenatorsOnProfile=(userinfo)=>{
-  console.log("userInfo", userInfo)
+  // console.log("userInfo", userInfo)
     const senator = senatorList.filter(sl => sl.state === userinfo.state)
-    console.log("filterSenatorsOnProfile", senator)
+    // console.log("filterSenatorsOnProfile", senator)
     setSenatorByState(senator)
 }
 
@@ -200,6 +200,7 @@ const getSenatorVotingRecord= async (objectfromform) => {
       <div className="background">
         
           <Nav  logout={logOut} />
+          
           <Routes>
             <Route path="/Profile" element={<ProfilePage user={userInfo} senators={senatorByState} editUser={editUser} />}/>
             <Route path="/Login" element={<LoginScreen loginUserCall={loginUser} registerUser={registerUser} />} />        

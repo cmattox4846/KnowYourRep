@@ -17,7 +17,7 @@ const BillByDate = (props) => {
     let response = await axios.get(`https://api.propublica.org/congress/v1/senate/votes/${objectpassed.start_date}/${objectpassed.end_date}.json`, { headers: {"X-API-Key": propublicakey}})
     console.log("Specific Bill By Date " , response.votes)
     setbillDateInfo(response.data.results.votes)  
-    console.log(response.data.results)
+    console.log(response.data.results.votes)
   }
 
   async function searchByDate() {
@@ -86,7 +86,7 @@ const BillByDate = (props) => {
               if (info.bill.bill_id != undefined) {
                 return (
                   <tr>
-                    <td className="cell1"><Link to="/Bills" state={{id: info.bill.number}}>{info.bill.bill_id}</Link></td>
+                    {/* <td className="cell1"><Link to="/Bills" state={bill_id: "s610"}>{info.bill.bill_id}</Link></td> */}
                     <td className="cell1">{info.bill.title}</td>
                     <td className="cell1">{info.date}</td>
                     <td className="cell1">{info.question}</td>
@@ -137,7 +137,7 @@ const BillByDate = (props) => {
               if (info.nomination != undefined) {
                 return (
                   <tr>
-                    <td className="cell1"><Link to="/Bills" state={{id: info.nomination.number}}>{info.nomination.nomination_id}</Link></td>
+                    <td className="cell1"><Link to="/Bills" state={{nom_id: info.nomination.number}}>{info.nomination.nomination_id}</Link></td>
                     <td className="cell1">{info.nomination.Name}</td>
                     <td className="cell1">{info.nomination.agency}</td>
                     <td className="cell1">{info.date}</td>

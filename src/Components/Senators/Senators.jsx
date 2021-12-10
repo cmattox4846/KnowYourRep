@@ -58,8 +58,13 @@ const SenatorScreen = () => {
   }
 
   return (
+   <div>
+     {specificSenator.id === undefined ?
+     <div></div>
+     :
     <div className="container">
           <div className="row">
+            
                     <div className="col-md-5">
                       <div className=" Senatortable2">
                         <table className="Senatorwrapper1">
@@ -70,7 +75,7 @@ const SenatorScreen = () => {
                                  <tr > <td className="SenatorcellLeft">Office Goverment Site</td><td className="Senatorcell"><a href={specificSenator.url}>{specificSenator.url}</a></td></tr>
                                  <tr > <td className="SenatorcellLeft">Party</td><td className="Senatorcell">{specificSenator.current_party}</td></tr>
              
-                 
+               
                         <tr > <td className="SenatorcellLeft">State</td><td className="Senatorcell">{specificSenator.roles[0].state}</td></tr>
                         <tr > <td className="SenatorcellLeft">State Rank</td><td className="Senatorcell">{specificSenator.roles[0].state_rank}</td></tr>
                         <tr > <td className="SenatorcellLeft">Total Votes</td><td className="Senatorcell">{specificSenator.roles[0].total_votes}</td></tr>
@@ -84,16 +89,8 @@ const SenatorScreen = () => {
                          </table>
                       </div>
                     </div>
-              
-         
-                
-      
-        
-
-          <div className="col-md-7 ">
-      
-          
-        
+                   
+                      <div className="col-md-7 ">
                           <div className="Senatortable2">
                             
                             <table className="Senatorwrapper">
@@ -119,11 +116,12 @@ const SenatorScreen = () => {
                               </tbody>
                             </table>
                             </div>
-            </div> 
+                        </div> 
+         
       </div>
       </div>
-      
-    
+      }
+  </div>  
   );
 };
 
