@@ -35,9 +35,9 @@ const ProfilePage = (props) =>
   const getUserProfile = async (tokenInfo) => {
     const jwt = localStorage.getItem('token');
     const id = tokenInfo.user_id
-    console.log("This is the UserID " , tokenInfo.user_id)
+    // console.log("This is the UserID " , tokenInfo.user_id)
     let response = await axios.get(`http://127.0.0.1:8000/profile/${id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
-    console.log("This is the profile from API " , response.data)
+    // console.log("This is the profile from API " , response.data)
     setUserInfo(response.data) 
    filterSenatorsOnProfile(response.data)
   }
@@ -57,23 +57,25 @@ useEffect(()=>{
 
   return (
     <div>
-      {console.log(senatorByState)}
+      {console.log("ByState",senatorByState)}
       {console.log(userInfo)}
-      {senatorByState.id != undefined ? 
-        (<div>
-          <div className="container">
-              <div className="col-md-3"></div>
-            <div className="col-md-6">
-              <ProfileSenatorsTable user={userInfo}/>
-            </div>
-            <div className="col-md-3"> </div>
-          </div>
-          <div className="container">
-            <ProfileSenatorsTable user={userInfo} senators={senatorByState}/>
+      {senatorByState[0] != null ? 
+        (
+            <div>
+              <div className="container">
+                  <div className="col-md-3"></div>
+                <div className="col-md-6">
+                  <ProfileUserTable user={userInfo}/>
+                </div>
+                <div className="col-md-3"> </div>
+              </div>
+              <div className="container">
+                <ProfileSenatorsTable user={userInfo} senators={senatorByState}/>
 
-            <div className="col-md-2"></div>
-          </div>
-          </div>)
+                <div className="col-md-2"></div>
+              </div>
+              </div>
+          )
         :(<div></div>)
         
         
