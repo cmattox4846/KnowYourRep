@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form"
 import { useNavigate } from "react-router";
 import useForm from "../UseForm/UseForm";
 import "./Login.css";
+import axios from "axios";
 
 import {BrowserRouter as Router, Routes,Route,Link,Outlet} from 'react-router-dom'
 
@@ -15,9 +16,15 @@ const LoginScreen = (props) => {
     
     let navigate= useNavigate();
 
+    async function loginUser(loginUser) {
+        let response = await axios.post('http://127.0.0.1:8000/api/auth/login/', loginUser);
+        localStorage.setItem('token', response.data.access);
+        //console.log("response axios call", response.data)
+        }
+
     async function login() { 
        // console.log("from login" + formValues)                  
-        props.loginUserCall(formValues)
+        loginUser(formValues)
         navigate("../Profile")
     }  
 

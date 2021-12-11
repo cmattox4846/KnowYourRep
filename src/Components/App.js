@@ -17,12 +17,12 @@ import BillByDate from './Bills/BillByDate';
 import { propublicakey } from '../keys';
 
 function App() {
-const [tokenInfo, setTokenInfo] = useState({})
+
 //const [noteList, setNoteList] = useState({})
 const [userInfo, setUserInfo] = useState({})
 const [senatorList, setSenatorList] = useState([])
 
-const [senatorByState, setSenatorByState] = useState([])
+
 const [senatorByStateInput, setSenatorByStateInput] = useState([])
 const [senatorInfo, setSenatorInfo] = useState([])
 const [specficSenator, setSpecificSenator] = useState([])
@@ -49,51 +49,16 @@ useEffect(()=>{
 
   
 
-//Get user login
-
-  async function loginUser(loginUser) {
-    let response = await axios.post('http://127.0.0.1:8000/api/auth/login/', loginUser);
-    localStorage.setItem('token', response.data.access);
-    //console.log("response axios call", response.data)
-    getUserJWT();
-  }
-
-const getUserJWT = () => {
-  const jwt = localStorage.getItem('token');
-  try {
-    const info = jwtDecode(jwt);
-    console.log("get info from jwt call", info)
-    
-    setTokenInfo(info)
-    getUserProfile(info)
-    
-   // setLoadData(!loadData)
-    
-    //console.log(jwt)
-  } catch (error) {
-    console.log("Error in decoding JWT token: ", error)
-    setTokenInfo({})
-    
-  }
 
 
-}
-const getUserProfile = async (info) => {
-  const jwt = localStorage.getItem('token');
-  const id = tokenInfo.user_id
-  console.log("This is the UserID " , tokenInfo.user_id)
-  let response = await axios.get(`http://127.0.0.1:8000/profile/${id}/`, { headers: {Authorization: 'Bearer ' + jwt}})
-  console.log("This is the profile from API " , response.data)
-  setUserInfo(response.data) 
- filterSenatorsOnProfile(response.data)
-}
 
-const logOut = ()=>{
-  localStorage.removeItem("token");
-  setTokenInfo({})
-  console.log("logged user out")
-  setlogoutStatus(true)
-}
+
+// const logOut = ()=>{
+//   localStorage.removeItem("token");
+//   setTokenInfo({})
+//   console.log("logged user out")
+//   setlogoutStatus(true)
+// }
 //register user
 const registerUser = async (objectBeingPassedIn) => {
 
@@ -112,22 +77,22 @@ const registerUser = async (objectBeingPassedIn) => {
   await axios.post('http://127.0.0.1:8000/api/auth/register/', newUser)
 }
 
-const editUser = async (objectBeingPassedIn) => {
- let id = tokenInfo.user_id
-  let updatedUser = {
-      first_name: objectBeingPassedIn.firstName,
-      last_name: objectBeingPassedIn.lastName,
-      password: objectBeingPassedIn.password,
-      username: objectBeingPassedIn.userName,
-      email: objectBeingPassedIn.email,
-      state: objectBeingPassedIn.state,
-      zip_code:objectBeingPassedIn.zip_code,
-      party:objectBeingPassedIn.party
+// const editUser = async (objectBeingPassedIn) => {
+//  let id = tokenInfo.user_id
+//   let updatedUser = {
+//       first_name: objectBeingPassedIn.firstName,
+//       last_name: objectBeingPassedIn.lastName,
+//       password: objectBeingPassedIn.password,
+//       username: objectBeingPassedIn.userName,
+//       email: objectBeingPassedIn.email,
+//       state: objectBeingPassedIn.state,
+//       zip_code:objectBeingPassedIn.zip_code,
+//       party:objectBeingPassedIn.party
 
-  }
+//   }
 
-  await axios.put(`http://127.0.0.1:8000/profile/${id}/`, updatedUser)
-}
+//   await axios.put(`http://127.0.0.1:8000/profile/${id}/`, updatedUser)
+// }
 // const getNotes = async () => {
 //   const jwt = localStorage.getItem('token');
 //   let response = await axios.get('https://127.0.0.1:8000/note', { headers: {Authorization: 'Bearer ' + jwt}})
@@ -147,12 +112,7 @@ const getCurrentSenators= async () => {
   
 }
 
-const filterSenatorsOnProfile=(userinfo)=>{
-  // console.log("userInfo", userInfo)
-    const senator = senatorList.filter(sl => sl.state === userinfo.state)
-    // console.log("filterSenatorsOnProfile", senator)
-    setSenatorByState(senator)
-}
+
 
 const filterSenators=(objectpassed)=>{
  setSenatorLoad(!senatorLoad)
@@ -162,51 +122,20 @@ const filterSenators=(objectpassed)=>{
   console.log("this is the array senator", senator)
   setSenatorByStateInput(senator)
 }
-
-
-// const getAllBills= async () => {
-  
-//   let response = await axios.get('https://api.propublica.org/congress/v1/members/{member-id}/votes.json', { headers: {"X-API-Key": propublicakey}})
-//   console.log("These are the Senators votesfrom API " , response.results.votes)
-//   setSenatorVoteList(response.results.votes)  
-// }
-
-
-
-// const getBillByDate= async (objectpassed) => {
-//   console.log(objectpassed.start_date, objectpassed.end_date)
-//   let response = await axios.get(`https://api.propublica.org/congress/v1/senate/votes/${objectpassed.start_date}/${objectpassed.end_date}.json`, { headers: {"X-API-Key": propublicakey}})
-//   //console.log("Specific Bill By Date " , response.data.results.votes)
-//   setbillDateInfo(response.data.results)  
-// }
-
-
-// const getSpecificSenator= async (obj) => {
- 
-//   let response = await axios.get(`https://api.propublica.org/congress/v1/members/${objectpassed.id}.json`, { headers: {"X-API-Key": propublicakey}})
-//   console.log("These are the Senators votesfrom API " + response.results.votes)
-//   setSenatorVoteList(response.results.votes)  
-
-// }
-
   return (
 
     <Router>
       <div className="background">
         
-          <Nav  logout={logOut} />
+          <Nav   />
           
           <Routes>
-            <Route path="/Profile" element={<ProfilePage user={userInfo} senators={senatorByState} editUser={editUser} />}/>
-            <Route path="/Login" element={<LoginScreen loginUserCall={loginUser} registerUser={registerUser} />} />        
+            <Route path="/Profile" element={<ProfilePage senatorList={senatorList} />}/>
+            <Route path="/Login" element={<LoginScreen  registerUser={registerUser} />} />        
             <Route path="/UserRegistration" element={<RegistrationScreen registerUser={registerUser} />} />
             <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />} />
             <Route path="/updateProfileFrom" element={<RegistrationScreen registerUser={registerUser} />} />
-            <Route path="/Senators" element={<SenatorScreen senator={senatorByState} specificSenator={specficSenator}senatorInfo={senatorInfo}  />}> 
-              {/* <Route path="/SenatorsByState" element={<SenatorByState senatorByStateInput={senatorByStateInput} filteredSenator={filterSenators} />}></Route> */}
-             
-             
-            </Route>
+            <Route path="/Senators" element={<SenatorScreen specificSenator={specficSenator}senatorInfo={senatorInfo}  />}/> 
             <Route path="VotingPosition" element={<VotingPosition />}/> 
             <Route path="BarChart" element={<BarChart />} />
             <Route path="/Bills" element={<BillsSearch  />} />
