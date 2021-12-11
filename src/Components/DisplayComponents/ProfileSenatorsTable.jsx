@@ -1,7 +1,8 @@
+import "../Profile/Profile.css" 
 
 const ProfileSenatorsTable=(props)=>{
     return(
-        <div>
+        <div className="container">
             <div className="col-md-12 text-center">
                  <h2>{props.user.state}'s Senators Representing </h2>
                 </div>

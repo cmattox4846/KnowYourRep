@@ -75,7 +75,7 @@
   .Profilecell1 {
     padding: 6px 12px;
     display: table-cell;
-    background: lightgray 0.75;
+    background: lightgray;
     border:darkgray;
     border-style:inset;
     border-width: 1px;
