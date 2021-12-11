@@ -171,11 +171,16 @@
    
   
   }
-  
   .billscell {
     padding: 6px 12px;
     display: table-cell;
     text-align: left;
+    width: 100%;
+  }
+  #billstable1 h6 {
+    white-space: nowrap; 
+    display:inline
+   
   }
   .billscellLeft {
     padding: 6px 12px;

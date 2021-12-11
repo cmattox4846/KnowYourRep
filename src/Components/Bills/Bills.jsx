@@ -63,41 +63,35 @@ const BillsSearch = (props) => {
 
   return (
     <div>
-      <SearchBars
-        searchNominations={SearchNominations}
-        searchBills={SearchBills}
-      />
+      
 
       <div className="container">
         <div className="row">
-          
-{/*            
-          {billInfo.id !== undefined ? (
+        <SearchBars
+        searchNominations={SearchNominations} searchBills={SearchBills} />
+         
+         
+         
+          {billInfo.length !== 0 ? 
             <div className="col-md-6">
               <BillDetailTable billInfo={billInfo} />
             </div>
-          ) : 
-          nominationInfo[0].id !== undefined ? (
+          : <div> </div>
+          }
+
+          {nominationInfo.length !== 0 ? 
             
             <NominationDetailsTable nomInfo={nominationInfo} />
-          ) : (
-            <div>Error</div>
-          )} */}
+          :<div></div>
+          }
 
 
 
-            <div className="col-md-6">
-              {/* <BillDetailTable billInfo={billInfo} />
-            </div>
-           */}
-            {nominationInfo[0].id !== undefined ? (
-            
-            <NominationDetailsTable nomInfo={nominationInfo} />)
-          :(<div></div>)}
+          
         </div>
       </div>
     </div>
-    </div>
+   
   );
 };
 

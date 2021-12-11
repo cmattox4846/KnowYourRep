@@ -14,33 +14,33 @@ const NominationDetailsTable= (props)=>{
              <tbody>
                   <tr>
                      
-                    <td>
-                      Nomination ID - {props.nomInfo[0].id}
+                    <td className="billscell">
+                     <h6> Nomination ID:</h6> {props.nomInfo[0].id}
                     </td> 
                   </tr>
                  
                     <tr>
                  
-                    <td>Subject - {props.nomInfo[0].description}</td>
+                    <td className="billscell"><h6>Subject:</h6> {props.nomInfo[0].description}</td>
                   </tr>
                   <tr>
                      
-                    <td>
-                      Status - {props.nomInfo[0].status} 
+                    <td className="billscell">
+                    <h6>Status:</h6> {props.nomInfo[0].status} 
                      
                     </td> 
                   </tr>
                   <tr>
                      
-                    <td>Total Yes - {props.nomInfo[0].votes[0].total_yes}</td>
+                    <td className="billscell"><h6 >Total Yes:</h6> {props.nomInfo[0].votes[0].total_yes}</td>
                   </tr>
 
                   <tr>
                      
-                    <td>Total No - {props.nomInfo[0].votes[0].total_no}</td>
+                    <td className="billscell"><h6>Total No:</h6> {props.nomInfo[0].votes[0].total_no}</td>
                   </tr>
                   <tr>
-                    <td>Result: {props.nomInfo[0].votes[0].result}</td>
+                    <td className="billscell"><h6>Result:</h6> {props.nomInfo[0].votes[0].result}</td>
                   </tr>
                 </tbody>
            </table>

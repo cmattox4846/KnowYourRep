@@ -9,30 +9,30 @@ const BillDetailTable=(props)=>{
                        <tbody>
                             <tr>
                                
-                              <td>
-                                Bill ID - {props.billInfo.bill} <a href={props.billInfo.govtrack_url}>Tracking Link</a>
+                              <td className="billscell">
+                               <h6> Bill ID:</h6> {props.billInfo.bill} <a href={props.billInfo.govtrack_url}>Tracking Link</a>
                               </td> 
                             </tr>
                             <tr>
                                
-                              <td>
-                                Bill Sponsor - {props.billInfo.sponsor} of 
+                              <td className="billscell">
+                               <h6> Bill Sponsor:</h6>  {props.billInfo.sponsor} of 
                                 {props.billInfo.sponsor_state}
                               </td> 
                             </tr>
                             <tr>
                                
-                              <td>Title - {props.billInfo.short_title}</td>
+                              <td className="billscell"><h6>Title:</h6>  {props.billInfo.short_title}</td>
                             </tr>
 
                             <tr>
                                
-                              <td>Committees Involved - {props.billInfo.committees}</td>
+                              <td className="billscell"><h6>Committees Involved:</h6>  {props.billInfo.committees}</td>
                             </tr>
 
                             <tr>
                                
-                              <td>
+                              <td className="billscell">
                                 {/* Total Yes Votes - {props.props.billInfo.votes[0].total_yes} |
                                 Total No Votes - {props.props.billInfo.votes[0].total_no} |
                                 Resulting Action - {props.props.billInfo.votes[0].result} */}
@@ -40,10 +40,10 @@ const BillDetailTable=(props)=>{
                             </tr>
 
                             <tr>
-                              <td>Subject - {props.billInfo.primary_subject}</td>
+                              <td className="billscell"><h6>Subject:</h6>  {props.billInfo.primary_subject}</td>
                             </tr>
                             <tr>
-                              <td>Summary: {props.billInfo.summary}</td>
+                              <td className="billscell"><h6>Summary:</h6>  {props.billInfo.summary}</td>
                             </tr>
                           </tbody>
                      </table>
