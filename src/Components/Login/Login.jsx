@@ -19,7 +19,7 @@ const LoginScreen = (props) => {
     async function loginUser(loginUser) {
         let response = await axios.post('http://127.0.0.1:8000/api/auth/login/', loginUser);
         localStorage.setItem('token', response.data.access);
-        window.location="/Profile"
+        // window.location="/Profile"
         //console.log("response axios call", response.data)
         }
 
@@ -38,7 +38,7 @@ const LoginScreen = (props) => {
             
             <Form onSubmit= {handleSubmit} className="loginbox">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                <p class="text-muted"> Please enter your login and password!</p>
+                <p className="text-muted"> Please enter your login and password!</p>
                   <Form.Label >User Name</Form.Label>
                    <Form.Control type="text" name="username"onChange= {handleChange} required= {true}/>
 

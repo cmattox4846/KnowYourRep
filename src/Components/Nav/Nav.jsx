@@ -2,16 +2,16 @@ import React from "react";
 import "./Nav.css";
 import { Link } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
  
   const logOut = ()=>{
     localStorage.removeItem("token");
     console.log("logged user out")
     window.location="/";
-    // setlogoutStatus(true)
+    props.setlogoutStatus(true)
     }
  
-  const Logout = () => {
+  const handleLogOut = () => {
     logOut();
   };
 
@@ -33,7 +33,7 @@ const Nav = () => {
           </Link>
           <Link to="/BillByDate">Bills By Date</Link>
 
-          <Link to="/login" onClick={Logout}>
+          <Link to="/"  onClick={() => handleLogOut()} >
             Logout Here
           </Link>
         </nav>

@@ -19,7 +19,7 @@ import HomePage from './HomePage/HomePage';
 function App() {
 //const [noteList, setNoteList] = useState({})
 const [senatorList, setSenatorList] = useState([])
-// const [logoutStatus, setlogoutStatus] = useState(false)
+const [logoutStatus, setlogoutStatus] = useState(false)
 
 useEffect(()=>{
 getCurrentSenators()
@@ -27,9 +27,9 @@ getCurrentSenators()
 
 
 
-// useEffect(()=>{
-//   //force refresh for logout
-// },[logoutStatus])
+useEffect(()=>{
+  //force refresh for logout
+},[logoutStatus])
 
 
 
@@ -82,7 +82,7 @@ const getCurrentSenators= async () => {
     <Router>
       <div className="background">
         
-          <Nav   />
+          <Nav  setlogoutStatus={setlogoutStatus} />
           
           <Routes>
             <Route path="/Profile" element={<ProfilePage senatorList={senatorList} />}/>
