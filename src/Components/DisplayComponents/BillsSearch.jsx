@@ -11,6 +11,7 @@ const BillsSearch = (props) => {
         <Form.Group>
           <Form.Label>Bill Name ie.(HR1111)</Form.Label>
           <Form.Control
+            autoComplete="off"
             type="text"
             name="id"
             onChange={handleChange}

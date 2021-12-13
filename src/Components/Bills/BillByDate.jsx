@@ -1,9 +1,5 @@
-import React, { useEffect, useState} from 'react';
-import useForm from "../UseForm/UseForm";
-import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router";
-import Form from "react-bootstrap/Form";
-import { Link } from 'react-router-dom'
+import React, {useState} from 'react';
+
 import axios from "axios";
 import { propublicakey } from "../../keys";
 import "./Bills.css"
@@ -16,16 +12,16 @@ const BillByDate = (props) => {
   const [billDateInfo, setbillDateInfo] = useState([])
 
   const getBillByDate= async (objectpassed) => {
-    console.log(objectpassed.start_date, objectpassed.end_date)
+    // console.log(objectpassed.start_date, objectpassed.end_date)
     let response = await axios.get(`https://api.propublica.org/congress/v1/senate/votes/${objectpassed.start_date}/${objectpassed.end_date}.json`, { headers: {"X-API-Key": propublicakey}})
-    console.log("Specific Bill By Date " , response.votes)
+    // console.log("Specific Bill By Date " , response.votes)
     setbillDateInfo(response.data.results.votes)  
-    console.log(response.data.results.votes)
+    // console.log(response.data.results.votes)
   }
 
   async function searchByDate(formValues) {
     getBillByDate(formValues);
-    console.log(formValues);
+    // console.log(formValues);
   }
 
   return (
@@ -39,7 +35,7 @@ const BillByDate = (props) => {
             </div>
       <div className="col-md-2"></div>
          </div>
-     {console.log("date info",billDateInfo)}
+     {/* {console.log("date info",billDateInfo)} */}
          {billDateInfo[0] !== undefined
          ?
          <div>

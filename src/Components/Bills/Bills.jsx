@@ -18,15 +18,17 @@ const BillsSearch = (props) => {
   const location = useLocation();
 
   const getSpecificBill = async (objectpassed) => {
-    const id = objectpassed.id;
+    const id = objectpassed;
     console.log("Bill Id ", objectpassed);
     let response = await axios.get(
       `https://api.propublica.org/congress/v1/117/bills/${id}.json`,
       { headers: { "X-API-Key": propublicakey } }
     );
-    // console.log("Specific Bill " , response.data.results[0])
+    console.log("Specific Bill " , response.data.results[0])
     setbillInfo(response.data.results[0]);
   };
+
+
   const getSpecificNomination = async (objectpassed) => {
     const id = objectpassed.nom_id;
     console.log("Nominee Id ", objectpassed.nom_id, id);
@@ -36,31 +38,36 @@ const BillsSearch = (props) => {
     );
     console.log("Specific Nomination ", response.data.results);
     setNominationInfo(response.data.results);
+    
   };
 
   const StripBillId=()=>{
+    console.log("incomine Bill", location.state.bill_id)
     let bill_id = location.state.bill_id.replace(/[^a-z0-9+]+/gi, ''); 
     setBillId(bill_id) 
-    console.log(bill_id)
+    getSpecificBill(bill_id);
+    console.log("bill_id",bill_id)
   }
   
-  StripBillId()
+  
 
   useEffect(() => {
+    if (location.state !== null){
     
     if (location.state.nom_id !== undefined) {
       getSpecificNomination(location.state);
  
-    } else {
-       
-      console.log("Location data", location);
-     // getSpecificBill(billId);
+    } else if (location.state.bill_id !== undefined){
+      StripBillId()
+      // console.log("Location data", location);
+    
     }
+  }
   }, []);
 
   async function SearchBills(formValues) {
     console.log(formValues);
-    getSpecificBill(formValues);
+    StripBillId(formValues);
   }
   async function SearchNominations(formValues) {
     console.log("Nom Form",formValues);
@@ -76,7 +83,7 @@ const BillsSearch = (props) => {
         <SearchBars
         searchNominations={SearchNominations} searchBills={SearchBills} />
          
-      {}   
+         
          
           {billInfo.length !== 0 ? 
             <div className="col-md-6">

@@ -13,6 +13,7 @@ const NominationSearch = (props) => {
         <Form.Group>
           <Form.Label>Nomination Name ie.(PN1111)</Form.Label>
           <Form.Control
+           autoComplete="off"
             type="text"
             name="nom_id"
             onChange={handleChange}

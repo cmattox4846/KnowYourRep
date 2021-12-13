@@ -3,8 +3,16 @@ import "./Nav.css";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+ 
+  const logOut = ()=>{
+    localStorage.removeItem("token");
+    console.log("logged user out")
+    window.location="/";
+    // setlogoutStatus(true)
+    }
+ 
   const Logout = () => {
-    this.props.logout();
+    logOut();
   };
 
   return (
@@ -20,7 +28,7 @@ const Nav = () => {
           {/* <Link to="/VotingPosition" >Voting Position</Link> */}
           <Link to="/SenatorsByState">SenatorsByState</Link>
           {/* <Link to="/BarChart" >Graphs</Link> */}
-          <Link to="/Bills" state={{ bill_id: null }}>
+          <Link to="/Bills" state={{ bill_id: undefined }}>
             Bills
           </Link>
           <Link to="/BillByDate">Bills By Date</Link>

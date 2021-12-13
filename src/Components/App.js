@@ -14,18 +14,12 @@ import BillsSearch from './Bills/Bills';
 import SenatorScreen from './Senators/Senators';
 import BillByDate from './Bills/BillByDate';
 import { propublicakey } from '../keys';
+import HomePage from './HomePage/HomePage';
 
 function App() {
 //const [noteList, setNoteList] = useState({})
 const [senatorList, setSenatorList] = useState([])
-const [senatorLoad, setSenatorLoad] = useState(false)
-const [logoutStatus, setlogoutStatus] = useState(false)
-
-
-
-
-
-
+// const [logoutStatus, setlogoutStatus] = useState(false)
 
 useEffect(()=>{
 getCurrentSenators()
@@ -33,18 +27,14 @@ getCurrentSenators()
 
 
 
-useEffect(()=>{
-  //force refresh for logout
-},[logoutStatus])
+// useEffect(()=>{
+//   //force refresh for logout
+// },[logoutStatus])
 
 
 
   
-const logOut = ()=>{
-  localStorage.removeItem("token");
-  console.log("logged user out")
-  setlogoutStatus(true)
-  }
+
 
 
 
@@ -92,7 +82,7 @@ const getCurrentSenators= async () => {
     <Router>
       <div className="background">
         
-          <Nav  logOut={logOut} />
+          <Nav   />
           
           <Routes>
             <Route path="/Profile" element={<ProfilePage senatorList={senatorList} />}/>
@@ -105,6 +95,7 @@ const getCurrentSenators= async () => {
             <Route path="BarChart" element={<BarChart />} />
             <Route path="/Bills" element={<BillsSearch  />} />
             <Route path="BillByDate" element={<BillByDate />} />
+            <Route path="/" element={<HomePage/>}/>
 
           </Routes>
          

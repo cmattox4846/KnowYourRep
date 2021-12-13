@@ -27,7 +27,7 @@ const VotingPositionBillsTable=(props)=>{
                 <tr>
                  
                   <td className="VPcell1">{senator.congress}</td>
-                  <td className="VPcell1"><Link to='/Bills' state={{id: senator.bill.number}}>{senator.bill.number}</Link></td>
+                  <td className="VPcell1"><Link to='/Bills' state={{bill_id: senator.bill.number}}>{senator.bill.number}</Link></td>
                   <td className="VPcell1">{senator.description}</td>
                   <td className="VPcell1">{senator.date}</td>
                   <td className="VPcell1">{senator.question}</td>

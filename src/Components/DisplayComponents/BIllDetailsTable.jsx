@@ -8,7 +8,7 @@ const BillDetailTable=(props)=>{
                     <table className="Senatorwrapper1">
                        <tbody>
                             <tr>
-                               
+                               {console.log("check it out",props.billInfo)}
                               <td className="billscell">
                                <h6> Bill ID:</h6> {props.billInfo.bill} <a href={props.billInfo.govtrack_url}>Tracking Link</a>
                               </td> 
