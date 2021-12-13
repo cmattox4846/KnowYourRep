@@ -1,79 +1,37 @@
-import React, {Component} from "react";
-import "./Nav.css"
-import { Link } from 'react-router-dom'
+import React from "react";
+import "./Nav.css";
+import { Link } from "react-router-dom";
 
+const Nav = () => {
+  const Logout = () => {
+    this.props.logout();
+  };
 
+  return (
+    <div>
+      <div>
+        <nav className="topNav">
+          <Link to="/">Home</Link>
 
+          <Link to="/login">Login Here</Link>
+          <Link to="/Profile">Profile</Link>
+          <Link to="/UserRegistration">Registration</Link>
+          {/* <Link to="/Senators" >Senators</Link> */}
+          {/* <Link to="/VotingPosition" >Voting Position</Link> */}
+          <Link to="/SenatorsByState">SenatorsByState</Link>
+          {/* <Link to="/BarChart" >Graphs</Link> */}
+          <Link to="/Bills" state={{ bill_id: null }}>
+            Bills
+          </Link>
+          <Link to="/BillByDate">Bills By Date</Link>
 
-class Nav extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            searchTerm:'' ,
-            logout:''         
-            
-        }
-    }
+          <Link to="/login" onClick={Logout}>
+            Logout Here
+          </Link>
+        </nav>
+      </div>
+    </div>
+  );
+};
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
-    handleSubmit = async (event) => {
-        event.preventDefault();             
-    
-    }
-
-    handleLogout = async (event) => {
-                 
-       this.props.logout()
-    }
-
-
-
-
-
-    render(){
-    return(
-        <div>
-            
-            
-            <div>
-                
-                <nav className='topNav'>
-                <Link to="/" >Home</Link>
-              
-                
-                <Link to="/login" >Login Here</Link>
-                <Link to="/Profile">Profile</Link>
-                <Link to="/UserRegistration">Registration</Link>
-                {/* <Link to="/Senators" >Senators</Link> */}
-                <Link to="/VotingPosition" >Voting Position</Link>
-                <Link to="/SenatorsByState" >SenatorsByState</Link>
-                {/* <Link to="/BarChart" >Graphs</Link> */}
-                <Link to="/Bills" state={{bill_id: null}} >Bills</Link>
-                <Link to="/BillByDate" >Bills By Date</Link>
-                
-                
-                
-               
-                <Link to="/login" onClick={this.handleLogout}>Logout Here</Link>
-                
-                
-                
-                
-                
-                </nav>
-                
-            </div>
-            
-        </div>
-        
-    )
-    }
-}
-
-
-export default Nav
+export default Nav;

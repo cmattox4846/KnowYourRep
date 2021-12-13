@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const BillsByDateTable =(props)=>{
     return(
@@ -26,7 +26,7 @@ const BillsByDateTable =(props)=>{
               if (info.bill.bill_id != undefined) {
                 return (
                   <tr>
-                    {/* <td className="cell1"><Link to="/Bills" state={bill_id: "s610"}>{info.bill.bill_id}</Link></td> */}
+                    <td className="cell1"><Link to="/Bills" state={{bill_id: info.bill.bill_id}}>{info.bill.bill_id}</Link></td>
                     <td className="cell1">{info.bill.title}</td>
                     <td className="cell1">{info.date}</td>
                     <td className="cell1">{info.question}</td>

@@ -1,22 +1,19 @@
-import Table from "react-bootstrap/Table";
-import Form from "react-bootstrap/Form";
-import useForm from "../UseForm/UseForm";
-import { useLocation, useNavigate } from "react-router";
-import Button from "react-bootstrap/Button";
+import { useLocation} from "react-router";
 import { useEffect, useState } from "react";
 import { propublicakey } from "../../keys";
 import axios from "axios";
 import "./Bills.css";
-import { render } from "@testing-library/react";
 import SearchBars from "../DisplayComponents/SearchBars";
 import BillDetailTable from "../DisplayComponents/BIllDetailsTable";
 import NominationDetailsTable from "../DisplayComponents/NominationDetailsTable";
+
 
 const BillsSearch = (props) => {
   // let navigate= useNavigate();
 
   const [billInfo, setbillInfo] = useState([]);
   const [nominationInfo, setNominationInfo] = useState([]);
+  const [billId, setBillId]= useState('')
 
   const location = useLocation();
 
@@ -41,14 +38,23 @@ const BillsSearch = (props) => {
     setNominationInfo(response.data.results);
   };
 
+  const StripBillId=()=>{
+    let bill_id = location.state.bill_id.replace(/[^a-z0-9+]+/gi, ''); 
+    setBillId(bill_id) 
+    console.log(bill_id)
+  }
+  
+  StripBillId()
+
   useEffect(() => {
+    
     if (location.state.nom_id !== undefined) {
       getSpecificNomination(location.state);
  
     } else {
-           
+       
       console.log("Location data", location);
-      //getSpecificBill(location.state);
+     // getSpecificBill(billId);
     }
   }, []);
 
@@ -70,7 +76,7 @@ const BillsSearch = (props) => {
         <SearchBars
         searchNominations={SearchNominations} searchBills={SearchBills} />
          
-         
+      {}   
          
           {billInfo.length !== 0 ? 
             <div className="col-md-6">

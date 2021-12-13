@@ -41,18 +41,18 @@ const SenatorScreen = () => {
     console.log("Location data", location)
     getCommittee(location.state)
   }
- 
-
     },[location])
-    useEffect(()=>{
-    // force rerender
-  
-      },[specificSenator])
+
+
+useEffect(()=>{
+// force rerender
+
+  },[specificSenator])
 
  
       console.log("This is SpecificSenator",specificSenator)
-    async function committeeSearch() {
-    getCommittee(formValues);
+async function committeeSearch() {
+getCommittee(formValues);
 
     // let navigate= useNavigate();
   }
@@ -70,7 +70,7 @@ const SenatorScreen = () => {
                         <table className="Senatorwrapper1">
                              <tbody><tr>
                              </tr>
-                                 <tr > <td className="SenatorcellLeft">Senate Member ID</td><td className="Senatorcell">{specificSenator.id}</td></tr>
+                                 <tr > <td className="SenatorcellLeft">Senate Member ID </td><td className="Senatorcell"><Link to="/VotingPosition" state={{id: specificSenator.id}}>{specificSenator.id}'s Voting Position</Link></td></tr>
                                  <tr > <td className="SenatorcellLeft">Name</td><td className="Senatorcell">{specificSenator.first_name} {specificSenator.last_name}</td></tr>
                                  <tr > <td className="SenatorcellLeft">Office Goverment Site</td><td className="Senatorcell"><a href={specificSenator.url}>{specificSenator.url}</a></td></tr>
                                  <tr > <td className="SenatorcellLeft">Party</td><td className="Senatorcell">{specificSenator.current_party}</td></tr>
