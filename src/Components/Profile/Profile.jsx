@@ -41,15 +41,16 @@ const ProfilePage = (props) => {
     );
     setSenatorByState(senator);
   };
+  
 
   useEffect(() => {
     getUserJWT();
-  }, []);
+  }, [localStorage.getItem("token")]);
 
   return (
     <div>
-      {console.log("ByState", senatorByState)}
-      {console.log(userInfo)}
+      {/* {console.log("ByState", senatorByState)}
+      {console.log(userInfo)} */}
       {senatorByState[0] != null ? (
         <div>
           <div className="container">

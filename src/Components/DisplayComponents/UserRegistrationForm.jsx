@@ -90,7 +90,7 @@ const UserRegistrationForm=(props)=>{
                    
                     <Form.Group>
                         <Form.Label>Zip Code: </Form.Label>
-                        <Form.Control type="text" name='zip_code' onChange={handleChange}required={true}/>
+                        <Form.Control type="text" name='zipcode' onChange={handleChange}required={true}/>
                     </Form.Group>
                    
                     

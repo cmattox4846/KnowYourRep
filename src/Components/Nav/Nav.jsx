@@ -23,7 +23,7 @@ const Nav = (props) => {
 
           <Link to="/login">Login Here</Link>
           <Link to="/Profile">Profile</Link>
-          <Link to="/UserRegistration">Registration</Link>
+          {/* <Link to="/UserRegistration">Registration</Link> */}
           {/* <Link to="/Senators" >Senators</Link> */}
           {/* <Link to="/VotingPosition" >Voting Position</Link> */}
           <Link to="/SenatorsByState">SenatorsByState</Link>

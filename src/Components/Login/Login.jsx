@@ -26,7 +26,7 @@ const LoginScreen = (props) => {
     async function login() { 
        // console.log("from login" + formValues)                  
         loginUser(formValues)
-        navigate("../Profile")
+        navigate("../")
     }  
 
 

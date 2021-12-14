@@ -7,18 +7,21 @@ const RegistrationScreen = (props) => {
   let navigate = useNavigate();
 
   const registerUser = async (objectBeingPassedIn) => {
+    console.log(objectBeingPassedIn)
     let newUser = {
-      first_name: objectBeingPassedIn.firstName,
-      last_name: objectBeingPassedIn.lastName,
+      firstname: objectBeingPassedIn.firstName,
+      lastname: objectBeingPassedIn.lastName,
       password: objectBeingPassedIn.password,
       username: objectBeingPassedIn.userName,
       email: objectBeingPassedIn.email,
       state: objectBeingPassedIn.state,
-      zip_code: objectBeingPassedIn.zip_code,
+      zipcode: objectBeingPassedIn.zipcode,
       party: objectBeingPassedIn.party,
-    };
+     
+     };
 
-    await axios.post("http://127.0.0.1:8000/api/auth/register/", newUser);
+    console.log(newUser)
+    await axios.post("http://localhost:8000/api/auth/register/", newUser);
   };
 
   async function Register(formValues) {
